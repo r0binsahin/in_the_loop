@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS "questions" (
 CREATE TABLE IF NOT EXISTS "surveys" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_amount" integer NOT NULL,
-	"date" date NOT NULL
+	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN

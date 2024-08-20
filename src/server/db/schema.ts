@@ -3,14 +3,14 @@ import {
   serial,
   integer,
   text,
-  date,
   real,
+  timestamp,
 } from 'drizzle-orm/pg-core';
 
 export const surveys = pgTable('surveys', {
   id: serial('id').primaryKey(),
   user_amount: integer('user_amount').notNull(),
-  date: date('date').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
 export const questions = pgTable('questions', {
