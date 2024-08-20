@@ -4,7 +4,8 @@ import { queryGetQuestions } from '@/server/queries';
 
 export const getQuestions = async () => {
   try {
-    return await queryGetQuestions();
+    const surveyQuestions = await queryGetQuestions();
+    return surveyQuestions;
   } catch (error) {
     console.error(error);
   }
