@@ -34,3 +34,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```mermaid
+erDiagram
+    SURVEYS {
+        int id PK
+        int user_amount
+        date date
+    }
+    QUESTIONS {
+        int id PK
+        text text
+        int survey_id FK
+    }
+    ANSWERS {
+        int id PK
+        real rating
+        int question_id FK
+    }
+
+    SURVEYS ||--o{ QUESTIONS : has
+    QUESTIONS ||--o{ ANSWERS : has
+```
