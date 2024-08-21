@@ -9,12 +9,13 @@ interface SurveyFormProps {
 }
 
 export const SurveyForm = ({ questions }: SurveyFormProps) => {
+  const [answers, setAnswers] = useState<number[]>([]);
   return (
     <form>
       {questions.map((question) => (
         <div key={question.id}>
           <p>{question.text}</p>
-          <Slider />
+          <Slider setAnswers={setAnswers} answers={answers} />
         </div>
       ))}
     </form>

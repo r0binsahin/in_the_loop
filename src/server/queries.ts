@@ -48,3 +48,11 @@ export const queryGetSurveyRatingsBySurveyId = async (surveyId: number) => {
     console.error(error);
   }
 };
+
+export const queryCreateAnswer = async (value: number) => {
+  try {
+    await db.insert(answers).values({ rating: value });
+  } catch (error) {
+    console.error(error);
+  }
+};

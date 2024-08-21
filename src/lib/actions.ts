@@ -1,6 +1,7 @@
 'use server';
 
 import {
+  queryCreateAnswer,
   queryGetQuestions,
   queryGetRatingsByQuestionId,
   queryGetSurveyRatingsBySurveyId,
@@ -35,6 +36,14 @@ export const getSurveyRatings = async (surveyId: number) => {
     if (!surveyRatings) return null;
 
     return surveyRatings;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createAnswer = async (value: number) => {
+  try {
+    await queryCreateAnswer(value);
   } catch (error) {
     console.error(error);
   }
