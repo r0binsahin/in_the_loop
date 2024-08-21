@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export const Slider = () => {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(5);
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(parseInt(event.target.value));
@@ -11,8 +11,6 @@ export const Slider = () => {
 
   return (
     <div className='slidecontainer'>
-      <h1 className='text-2xl font-bold mb-4'>Custom Range Slider</h1>
-
       <p className='mt-4 mb-2'>Custom range slider:</p>
       <input
         type='range'

@@ -1,4 +1,6 @@
 'use client';
+import { useState } from 'react';
+import { Slider } from './';
 
 import { Question } from '@/lib/types/Question';
 
@@ -12,6 +14,7 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
       {questions.map((question) => (
         <div key={question.id}>
           <p>{question.text}</p>
+          <Slider />
         </div>
       ))}
     </form>

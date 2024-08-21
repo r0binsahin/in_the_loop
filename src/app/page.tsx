@@ -24,7 +24,7 @@ export default async function Home() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Survey form page</h1>
-      <Slider />
+
       <SurveyForm questions={questions} />
       <Gauge value={averageRatingForSurvey1} />
     </main>
