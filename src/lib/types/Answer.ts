@@ -1,5 +1,5 @@
 export type Answer = {
-  id: number;
+  id?: number;
   rating: number;
   question_id: number | null;
 };

@@ -1,3 +1,4 @@
+import { Answer } from '@/lib/types/Answer';
 import { db } from './db';
 import { answers, questions } from './db/schema';
 import { eq } from 'drizzle-orm';
@@ -49,9 +50,9 @@ export const queryGetSurveyRatingsBySurveyId = async (surveyId: number) => {
   }
 };
 
-export const queryCreateAnswer = async (value: number) => {
+export const queryCreateAnswer = async (answer: Answer) => {
   try {
-    await db.insert(answers).values({ rating: value });
+    await db.insert(answers).values(answer);
   } catch (error) {
     console.error(error);
   }

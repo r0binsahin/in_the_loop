@@ -1,14 +1,16 @@
 'use client';
 
+import { Answer } from '@/lib/types/Answer';
 import { answers } from '@/server/db/schema';
 import { SetStateAction, useState, MouseEvent } from 'react';
 
 interface SliderProps {
-  answers: number[];
-  setAnswers: (answers: number[]) => void;
+  answers: Answer[];
+  questionId: number;
+  setAnswers: (answers: Answer[]) => void;
 }
 
-export const Slider = ({ setAnswers, answers }: SliderProps) => {
+export const Slider = ({ setAnswers, answers, questionId }: SliderProps) => {
   const [value, setValue] = useState(5);
 
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +19,8 @@ export const Slider = ({ setAnswers, answers }: SliderProps) => {
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setAnswers([...answers, value]);
+    const newAnswer = { rating: value, question_id: questionId };
+    setAnswers([...answers, newAnswer]);
   };
   console.log('answers:', answers);
 

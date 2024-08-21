@@ -6,6 +6,7 @@ import {
   queryGetRatingsByQuestionId,
   queryGetSurveyRatingsBySurveyId,
 } from '@/server/queries';
+import { Answer } from './types/Answer';
 
 export const getQuestions = async () => {
   try {
@@ -41,9 +42,9 @@ export const getSurveyRatings = async (surveyId: number) => {
   }
 };
 
-export const createAnswer = async (value: number) => {
+export const createAnswer = async (answer: Answer) => {
   try {
-    await queryCreateAnswer(value);
+    await queryCreateAnswer(answer);
   } catch (error) {
     console.error(error);
   }
