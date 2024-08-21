@@ -12,10 +12,12 @@ export const queryGetQuestions = async () => {
 
 export const queryGetRatingsByQuestionId = async (questionId: number) => {
   try {
-    const ratings = await db
+    const answersArray = await db
       .select()
       .from(answers)
       .where(eq(answers.question_id, questionId));
+
+    const ratings = answersArray.map((ans) => ans.rating);
 
     return ratings;
   } catch (error) {
