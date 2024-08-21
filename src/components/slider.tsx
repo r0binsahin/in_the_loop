@@ -22,7 +22,7 @@ export const Slider = ({ setAnswers, answers, questionId }: SliderProps) => {
     const newAnswer = { rating: value, question_id: questionId };
     setAnswers([...answers, newAnswer]);
   };
-  console.log('answers:', answers);
+  /*  console.log('answers:', answers); */
 
   return (
     <div className='slidecontainer'>

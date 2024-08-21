@@ -13,12 +13,28 @@ interface SurveyFormProps {
 export const SurveyForm = ({ questions }: SurveyFormProps) => {
   const [answers, setAnswers] = useState<Answer[]>([]);
 
-  const submitAnswers = (e: SubmitEvent, questionId: number) => {
-    /*     answers.map(async (ans) => await createAnswer(ans.rating)); */
+  const submitAnswers = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      console.log('HELLO WORLD!');
+      if (answers.length === 0) console.log('no answers');
+
+      await Promise.all(
+        answers.map(async (answer) => {
+          await createAnswer(answer);
+        })
+      );
+
+      console.log('Answers created:', answers.length);
+      console.log('Answers:', answers);
+    } catch (error) {
+      console.error('Error creating answers:', error);
+    }
   };
 
   return (
-    <form>
+    <form onSubmit={submitAnswers}>
       {questions.map((question) => (
         <div key={question.id}>
           <p>{question.text}</p>

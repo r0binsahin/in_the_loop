@@ -13,13 +13,13 @@ export default async function Home() {
   const ratings = (await getRatingsByQuestionId(1)) || [];
 
   const averageRatingForQ1 = calculateAverageRatingPerQuestion(ratings);
-  console.log('averageRatingForQ1', averageRatingForQ1);
+  /*   console.log('averageRatingForQ1', averageRatingForQ1); */
 
   const surveyRatings = (await getSurveyRatings(1)) || [];
   const averageRatingForSurvey1 =
     calculateAverageRatingPerSurvey(surveyRatings);
 
-  console.log(averageRatingForSurvey1);
+  /*   console.log(averageRatingForSurvey1); */
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
