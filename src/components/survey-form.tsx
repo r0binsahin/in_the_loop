@@ -1,6 +1,6 @@
 'use client';
 
-import { Question } from '@/types/Question';
+import { Question } from '@/lib/types/Question';
 
 interface SurveyFormProps {
   questions: Question[];

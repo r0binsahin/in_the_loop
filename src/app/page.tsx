@@ -1,11 +1,11 @@
-import { calculateAverageRatingPerQuestion } from '@/utils/calculate-average-rating-per-question';
+import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average-rating-per-question';
 import * as Components from '../components/index';
 import {
   getQuestions,
   getRatingsByQuestionId,
   getSurveyRatings,
-} from './actions';
-import { calculateAverageRatingPerSurvey } from '@/utils/calculate-average-rating-per-survey';
+} from '../lib/actions';
+import { calculateAverageRatingPerSurvey } from '@/lib/utils/calculate-average-rating-per-survey';
 
 export default async function Home() {
   const questions = (await getQuestions()) || [];
