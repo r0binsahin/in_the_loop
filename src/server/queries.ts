@@ -10,6 +10,7 @@ export const queryGetQuestions = async () => {
   }
 };
 
+//needed for ai
 export const queryGetRatingsByQuestionId = async (questionId: number) => {
   try {
     const answersArray = await db
@@ -20,6 +21,29 @@ export const queryGetRatingsByQuestionId = async (questionId: number) => {
     const ratings = answersArray.map((ans) => ans.rating);
 
     return ratings;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const queryGetSurveyRatingsBySurveyId = async (surveyId: number) => {
+  try {
+    const surveyQuestionsArray = await db
+      .select()
+      .from(questions)
+      .where(eq(questions.survey_id, surveyId));
+
+    const surveyRatings = (
+      await Promise.all(
+        surveyQuestionsArray.map(async (question) => {
+          const rating = await queryGetRatingsByQuestionId(question.id);
+          if (!rating) return [];
+          return rating;
+        })
+      )
+    ).flat();
+
+    return surveyRatings;
   } catch (error) {
     console.error(error);
   }

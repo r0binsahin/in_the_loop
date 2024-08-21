@@ -3,6 +3,7 @@
 import {
   queryGetQuestions,
   queryGetRatingsByQuestionId,
+  queryGetSurveyRatingsBySurveyId,
 } from '@/server/queries';
 
 export const getQuestions = async () => {
@@ -22,6 +23,18 @@ export const getRatingsByQuestionId = async (questionId: number) => {
     if (!ratings) return [];
 
     return ratings;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getSurveyRatings = async (surveyId: number) => {
+  try {
+    const surveyRatings = await queryGetSurveyRatingsBySurveyId(surveyId);
+
+    if (!surveyRatings) return null;
+
+    return surveyRatings;
   } catch (error) {
     console.error(error);
   }
