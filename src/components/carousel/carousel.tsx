@@ -157,7 +157,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 className={styles.divagain}
               >
                 <div className={styles.mainSection}>
-                  <p>count:{count}</p>
+                  <p>question:{count + 1}</p>
                   <h1>
                     {questions[count]
                       ? questions[count].text
