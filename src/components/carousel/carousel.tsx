@@ -7,10 +7,11 @@ import styles from './carousel.module.scss';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { Question } from '@/lib/types/Question';
 
-import { Slider } from '../';
+import { Slider, WelcomeCard } from '../';
 import { Answer } from '@/lib/types/Answer';
 import { createAnswer } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
+import { sassTrue } from 'sass';
 
 interface CarouselProps {
   questions: Question[];
@@ -23,6 +24,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const prev: number | null = usePrevious(count);
   const [value, setValue] = useState(5);
   const [answers, setAnswers] = useState<Answer[]>([]);
+  const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
 
   const getDirection = () => {
@@ -75,10 +77,14 @@ export const Carousel = ({ questions }: CarouselProps) => {
   };
 
   const handleNext = () => {
-    updateAnswersOnClick();
+    if (isWelcome) {
+      setIsWelcome(false);
+    } else {
+      updateAnswersOnClick();
 
-    if (count < questions.length - 1) {
-      setCount(count + 1);
+      if (count < questions.length - 1) {
+        setCount(count + 1);
+      }
     }
   };
 
@@ -156,21 +162,30 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 custom={{ direction, width }}
                 className={styles.divagain}
               >
-                <div className={styles.mainSection}>
-                  <p>question:{count + 1}</p>
-                  <h1>
-                    {questions[count]
-                      ? questions[count].text
-                      : 'Something went wrong!'}
-                  </h1>
-                  <Slider value={value} setValue={setValue} />
-                </div>
-                <div className={styles.buttonWrapper}>
-                  <div className={styles.buttonDiv}>
-                    <button onClick={handlePrev}>
-                      <BsChevronLeft size={42} />
-                    </button>
+                {isWelcome ? (
+                  <WelcomeCard />
+                ) : (
+                  <div className={styles.mainSection}>
+                    <p>question:{count + 1}</p>
+                    <h1>
+                      {questions[count]
+                        ? questions[count].text
+                        : 'Something went wrong!'}
+                    </h1>
+                    <Slider value={value} setValue={setValue} />
                   </div>
+                )}
+
+                <div className={styles.buttonWrapper}>
+                  {isWelcome || count === 0 ? (
+                    ''
+                  ) : (
+                    <div className={styles.buttonDiv}>
+                      <button onClick={handlePrev}>
+                        <BsChevronLeft size={42} />
+                      </button>
+                    </div>
+                  )}
 
                   <div className={styles.buttonDiv}>
                     {count === questions.length - 1 ? (

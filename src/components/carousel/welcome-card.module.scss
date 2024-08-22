@@ -1,0 +1,90 @@
+.card {
+  /*   z-index: 2;
+  width: 80%;
+  min-height: px;
+  background: white;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  transition: all 50ms ease;
+  padding: 24px;
+  margin: 20px;
+
+  @media screen and (min-width: 768px) {
+    width: 720px;
+    padding: 40px;
+    margin: 40px;
+    min-height: 312px;
+  } */
+
+  .welcomeTitle {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-family: 'Space Mono';
+
+    @media screen and (min-width: 768px) {
+      gap: 0px;
+    }
+
+    h1 {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 120%;
+      color: black;
+
+      @media screen and (min-width: 768px) {
+        font-size: 3rem;
+      }
+    }
+
+    h3 {
+      font-style: light;
+      font-weight: 100;
+      font-size: 0.75rem;
+      line-height: 150%;
+      margin: 0;
+      color: #42464d;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .welcomeCopy {
+    margin: 0 0 40px 0;
+
+    @media screen and (min-width: 768px) {
+      margin: 36px 0 72px 0;
+    }
+
+    p {
+      font-weight: 100;
+      font-size: 1rem;
+      color: #42464d;
+      max-width: 706px;
+      line-height: 150%;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .startSwipe {
+    p {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      color: black;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
