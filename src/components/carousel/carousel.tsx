@@ -122,12 +122,6 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
       onTouchEnd={handleTouchEnd}
     >
       <div className={styles.cardDiv}>
-        <div className={styles.buttonDiv}>
-          <button onClick={handlePrev}>
-            <BsChevronLeft size={42} />
-          </button>
-        </div>
-
         <div ref={ref} className={styles.diver}>
           <AnimatePresence custom={{ direction, width }}>
             {
@@ -150,15 +144,21 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
                   </h1>
                   <Slider value={value} setValue={setValue} />
                 </div>
+                <div className={styles.buttonWrapper}>
+                  <div className={styles.buttonDiv}>
+                    <button onClick={handlePrev}>
+                      <BsChevronLeft size={42} />
+                    </button>
+                  </div>
+                  <div className={styles.buttonDiv}>
+                    <button onClick={handleNext}>
+                      <BsChevronRight size={42} />
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             }
           </AnimatePresence>
-        </div>
-
-        <div className={styles.buttonDiv}>
-          <button onClick={handleNext}>
-            <BsChevronRight size={42} />
-          </button>
         </div>
       </div>
     </motion.div>
