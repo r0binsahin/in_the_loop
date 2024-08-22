@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Slider } from './';
+import { Carousel, Slider } from './';
 
 import { Question } from '@/lib/types/Question';
 import { createAnswer } from '@/lib/actions';
@@ -28,23 +28,19 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
 
       console.log('Answers created:', answers.length);
       console.log('Answers:', answers);
+      setAnswers([]);
     } catch (error) {
       console.error('Error creating answers:', error);
     }
   };
 
   return (
-    <form onSubmit={submitAnswers}>
-      {questions.map((question) => (
-        <div key={question.id}>
-          <p>{question.text}</p>
-          <Slider
-            setAnswers={setAnswers}
-            answers={answers}
-            questionId={question.id}
-          />
-        </div>
-      ))}
+    <form onSubmit={submitAnswers} className='w-2/3'>
+      <Carousel
+        questions={questions}
+        answers={answers}
+        setAnswers={setAnswers}
+      />
       <button type='submit'>Submit</button>
     </form>
   );
