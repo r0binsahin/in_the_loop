@@ -80,7 +80,19 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
     if (count > 0) {
       setCount(count - 1);
     }
+
+    const prevAnswers = [...answers];
+    prevAnswers.pop();
+    setAnswers(prevAnswers);
+    console.log('prev ansers,', answers);
+
+    /*    const newAnswer = { rating: value, question_id: questions[count].id };
+    setAnswers([...answers, newAnswer]);
+    setValue(5);
+ */
   };
+
+  console.log(' ans', answers);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     const touchStartX = e.touches[0].clientX;

@@ -17,7 +17,6 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
     e.preventDefault();
 
     try {
-      console.log('HELLO WORLD!');
       if (answers.length === 0) console.log('no answers');
 
       await Promise.all(
@@ -26,8 +25,8 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
         })
       );
 
-      console.log('Answers created:', answers.length);
-      console.log('Answers:', answers);
+      /*       console.log('Answers created:', answers.length);
+      console.log('Answers:', answers); */
       setAnswers([]);
     } catch (error) {
       console.error('Error creating answers:', error);
@@ -35,13 +34,13 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
   };
 
   return (
-    <form onSubmit={submitAnswers} className='w-2/3'>
+    <>
       <Carousel
         questions={questions}
         answers={answers}
         setAnswers={setAnswers}
       />
-      <button type='submit'>Submit</button>
-    </form>
+      <button onClick={(e) => submitAnswers(e)}>Submit</button>
+    </>
   );
 };
