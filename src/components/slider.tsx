@@ -5,24 +5,14 @@ import { answers } from '@/server/db/schema';
 import { SetStateAction, useState, MouseEvent } from 'react';
 
 interface SliderProps {
-  answers: Answer[];
-  questionId: number;
-  setAnswers: (answers: Answer[]) => void;
+  value: number;
+  setValue: (value: number) => void;
 }
 
-export const Slider = ({ setAnswers, answers, questionId }: SliderProps) => {
-  const [value, setValue] = useState(5);
-
+export const Slider = ({ value, setValue }: SliderProps) => {
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(parseInt(event.target.value));
   };
-
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const newAnswer = { rating: value, question_id: questionId };
-    setAnswers([...answers, newAnswer]);
-  };
-  /*  console.log('answers:', answers); */
 
   return (
     <div className='slidecontainer'>
@@ -35,9 +25,7 @@ export const Slider = ({ setAnswers, answers, questionId }: SliderProps) => {
         onChange={handleSliderChange}
         className='slider w-full h-4 bg-gray-300 rounded-lg appearance-none cursor-pointer'
       />
-
       <p className='mt-4'>Current value: {value}</p>
-      <button onClick={(e) => handleClick(e)}>next</button>
     </div>
   );
 };

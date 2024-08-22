@@ -7,15 +7,21 @@ import styles from './carousel.module.scss';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { Question } from '@/lib/types/Question';
 
+import { Slider } from '../';
+import { Answer } from '@/lib/types/Answer';
+
 interface CarouselProps {
   questions: Question[];
+  answers: Answer[];
+  setAnswers: (answers: Answer[]) => void;
 }
 
-export const Carousel = ({ questions }: CarouselProps) => {
+export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
   const [ref, { width }] = useMeasure();
   const touchStartXRef = useRef<number | null>(null);
   const [count, setCount] = useState(0);
   const prev: number | null = usePrevious(count);
+  const [value, setValue] = useState(5);
 
   const getDirection = () => {
     if (prev) {
@@ -51,10 +57,6 @@ export const Carousel = ({ questions }: CarouselProps) => {
     stiffness: 100,
   };
 
-  /*   const mod = (a: number, b: number) => {
-    return ((a % b) + b) % b;
-  }; */
-
   function usePrevious(state: number) {
     const [prev, setPrev] = useState([state, null]);
     if (prev[1] !== state) {
@@ -65,6 +67,10 @@ export const Carousel = ({ questions }: CarouselProps) => {
   }
 
   const handleNext = () => {
+    const newAnswer = { rating: value, question_id: questions[count].id };
+    setAnswers([...answers, newAnswer]);
+    setValue(5);
+
     if (count < questions.length - 1) {
       setCount(count + 1);
     }
@@ -130,6 +136,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                       ? questions[count].text
                       : 'Something went wrong!'}
                   </h1>
+                  <Slider value={value} setValue={setValue} />
                 </div>
               </motion.div>
             }
