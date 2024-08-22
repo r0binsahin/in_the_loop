@@ -9,19 +9,21 @@ import { Question } from '@/lib/types/Question';
 
 import { Slider } from '../';
 import { Answer } from '@/lib/types/Answer';
+import { createAnswer } from '@/lib/actions';
+import { useRouter } from 'next/navigation';
 
 interface CarouselProps {
   questions: Question[];
-  answers: Answer[];
-  setAnswers: (answers: Answer[]) => void;
 }
 
-export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
+export const Carousel = ({ questions }: CarouselProps) => {
   const [ref, { width }] = useMeasure();
   const touchStartXRef = useRef<number | null>(null);
   const [count, setCount] = useState(0);
   const prev: number | null = usePrevious(count);
   const [value, setValue] = useState(5);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const router = useRouter();
 
   const getDirection = () => {
     if (prev) {
@@ -66,10 +68,14 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
     return prev[0];
   }
 
-  const handleNext = () => {
+  const updateAnswersOnClick = () => {
     const newAnswer = { rating: value, question_id: questions[count].id };
     setAnswers([...answers, newAnswer]);
     setValue(5);
+  };
+
+  const handleNext = () => {
+    updateAnswersOnClick();
 
     if (count < questions.length - 1) {
       setCount(count + 1);
@@ -85,19 +91,13 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
     prevAnswers.pop();
     setAnswers(prevAnswers);
     console.log('prev ansers,', answers);
-
-    /*    const newAnswer = { rating: value, question_id: questions[count].id };
-    setAnswers([...answers, newAnswer]);
-    setValue(5);
- */
   };
-
-  console.log(' ans', answers);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     const touchStartX = e.touches[0].clientX;
     touchStartXRef.current = touchStartX;
   };
+
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartXRef.current !== null) {
       const touchEndX = e.changedTouches[0].clientX;
@@ -110,6 +110,27 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
       }
 
       touchStartXRef.current = null;
+    }
+  };
+
+  const submitAnswers = async () => {
+    try {
+      if (answers.length === 0) console.log('no answers');
+
+      const newAnswer = { rating: value, question_id: questions[count].id };
+      const allAnswers = [...answers, newAnswer];
+      setValue(5);
+
+      await Promise.all(
+        allAnswers.map(async (answer) => {
+          await createAnswer(answer);
+        })
+      );
+
+      setAnswers([]);
+      router.push('/result');
+    } catch (error) {
+      console.error('Error creating answers:', error);
     }
   };
 
@@ -150,10 +171,15 @@ export const Carousel = ({ questions, answers, setAnswers }: CarouselProps) => {
                       <BsChevronLeft size={42} />
                     </button>
                   </div>
+
                   <div className={styles.buttonDiv}>
-                    <button onClick={handleNext}>
-                      <BsChevronRight size={42} />
-                    </button>
+                    {count === questions.length - 1 ? (
+                      <button onClick={submitAnswers}>Submit</button>
+                    ) : (
+                      <button onClick={handleNext}>
+                        <BsChevronRight size={42} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>

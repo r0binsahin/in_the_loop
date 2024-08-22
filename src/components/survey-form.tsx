@@ -35,11 +35,7 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
 
   return (
     <>
-      <Carousel
-        questions={questions}
-        answers={answers}
-        setAnswers={setAnswers}
-      />
+      <Carousel questions={questions} />
       <button onClick={(e) => submitAnswers(e)}>Submit</button>
     </>
   );
