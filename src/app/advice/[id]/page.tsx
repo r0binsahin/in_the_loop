@@ -27,22 +27,36 @@ export default function Advice() {
       setQuestion(foundQuestion!);
     };
 
+    fetchQuestion();
+  }, []);
+
+  useEffect(() => {
     const fetchRatings = async () => {
       const newRatings: AverageRatings = {};
       const ratings = await getRatingsByQuestionId(+params.id);
       newRatings[+params.id] = calculateAverageRatingPerQuestion(ratings || []);
       setAverageRatings(newRatings);
     };
-
-    const fetchAdvice = async () => {
-      const supportResponse = await generateAISupport(prompt);
-      setAdvice(supportResponse.content);
-    };
-
-    fetchQuestion();
     fetchRatings();
-    fetchAdvice();
   }, []);
+
+  useEffect(() => {
+    if (question && Object.keys(averageRatings).length > 0) {
+      const rating = averageRatings[+params.id];
+      const prompt = `Based on a survey conducted in our office, we scored a ${rating} out of 10 on this question: ${question.text}. How can we improve this?`;
+
+      const fetchAdvice = async () => {
+        const supportResponse = await generateAISupport(prompt);
+        setAdvice(supportResponse.content);
+      };
+
+      fetchAdvice();
+    }
+  }, [question, averageRatings, params.id]);
+
+  console.log(question?.text);
+  console.log(averageRatings);
+  console.log(advice);
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
