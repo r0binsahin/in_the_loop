@@ -18,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lexend.className} antialiased h-full`}>
-        <Navbar />
-        {children}
+        <div className="flex flex-col min-h-screen max-w-[1100px] mx-auto w-full">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );
