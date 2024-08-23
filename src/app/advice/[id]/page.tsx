@@ -10,6 +10,11 @@ import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 type AverageRatings = { [key: number]: number };
 
 export default function Advice() {
@@ -54,14 +59,10 @@ export default function Advice() {
     }
   }, [question, averageRatings, params.id]);
 
-  console.log(question?.text);
-  console.log(averageRatings);
-  console.log(advice);
-
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Ai advice page</h1>
-      <p> {advice} </p>
+      <ReactMarkdown children={advice!} remarkPlugins={[remarkGfm]} />,
     </main>
   );
 }
