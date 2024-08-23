@@ -10,14 +10,13 @@ export const Slider = ({ value, setValue }: SliderProps) => {
 
   return (
     <div className="slidecontainer">
-      <p className="mt-4 mb-2">Custom range slider:</p>
       <input
         type="range"
         min="1"
         max="10"
         value={value}
         onChange={handleSliderChange}
-        className="slider w-full h-4 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+        className="slider w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer"
       />
       <p className="mt-4">Current value: {value}</p>
     </div>
