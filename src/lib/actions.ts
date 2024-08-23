@@ -7,6 +7,7 @@ import {
   queryGetSurveyRatingsBySurveyId,
 } from '@/server/queries';
 import { Answer } from './types/Answer';
+import { giveAdvice } from './advice';
 
 export const getQuestions = async () => {
   try {
@@ -48,4 +49,9 @@ export const createAnswer = async (answer: Answer) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const generateAISupport = async () => {
+  const result = await giveAdvice();
+  return result;
 };
