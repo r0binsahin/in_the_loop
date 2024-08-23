@@ -43,7 +43,7 @@ export const QuestionsForAdvice = ({ questions }: QuestionsForAdviceProps) => {
               : 'Loading...'}
           </p>
           {averageRatings[q.id] < 6 ? (
-            <Link href='/advice'>Get Advice</Link>
+            <Link href={`/advice/${q.id}`}>Get Advice</Link>
           ) : (
             <span>Good enough</span>
           )}
