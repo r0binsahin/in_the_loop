@@ -51,7 +51,7 @@ export const createAnswer = async (answer: Answer) => {
   }
 };
 
-export const generateAISupport = async () => {
-  const result = await giveAdvice();
+export const generateAISupport = async (prompt: string) => {
+  const result = await giveAdvice(prompt);
   return result;
 };
