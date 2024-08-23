@@ -13,6 +13,7 @@ interface GaugeProps {
 export const Gauge = ({ value }: GaugeProps) => {
   return (
     <GaugeComponent
+      style={{ width: '700px' }}
       arc={{
         subArcs: [
           {
