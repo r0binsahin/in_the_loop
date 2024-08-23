@@ -169,7 +169,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 ) : (
                   <div className="mt-10">
                     <p>Question {count + 1}</p>
-                    <Divider />
+                    <Divider color={"secondary"} />
                     <h1 className="font-bold text-xl leading-[140%] md:text-3xl">
                       {questions[count]
                         ? questions[count].text
