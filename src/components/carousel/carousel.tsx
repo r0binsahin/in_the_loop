@@ -10,6 +10,7 @@ import { Slider, WelcomeCard } from "../";
 import { Answer } from "@/lib/types/Answer";
 import { createAnswer } from "@/lib/actions";
 import { useRouter } from "next/navigation";
+import { Divider } from "@/app/ui";
 
 interface CarouselProps {
   questions: Question[];
@@ -167,7 +168,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
                   <WelcomeCard />
                 ) : (
                   <div className="mt-10">
-                    <p>question: {count + 1}</p>
+                    <p>Question {count + 1}</p>
+                    <Divider />
                     <h1 className="font-bold text-xl leading-[140%] md:text-3xl">
                       {questions[count]
                         ? questions[count].text
