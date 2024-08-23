@@ -9,16 +9,29 @@ export const Slider = ({ value, setValue }: SliderProps) => {
   };
 
   return (
-    <div className="slidecontainer">
+    <div className="slidecontainer mt-10">
       <input
         type="range"
-        min="1"
+        min={1}
         max="10"
         value={value}
         onChange={handleSliderChange}
-        className="slider w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer"
+        className="range range-xs range-accent bg-[#f5e9dd]"
+        step="1"
       />
-      <p className="mt-4">Current value: {value}</p>
+      <div className="flex w-full justify-between px-2 text-xs">
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+      </div>
+      <p className="mt-8">Current value: {value}</p>
     </div>
   );
 };
