@@ -142,7 +142,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
     <motion.div
       animate={{}}
       transition={{ ease: "easeInOut", duration: 0.9 }}
-      className="h-[calc(100vh-40px)] w-full flex items-center justify-center relative pt-10 border border-black bg-cover overflow-hidden"
+      className="h-[calc(100vh-40px)] w-full flex items-center justify-center relative pt-10 bg-cover overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -161,7 +161,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 exit="exit"
                 transition={spring}
                 custom={{ direction, width }}
-                className="z-10 flex flex-col min-h-[230px] bg-white shadow-lg rounded-2xl m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10"
+                className="z-10 flex flex-col min-h-[230px] bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10"
               >
                 {isWelcome ? (
                   <WelcomeCard />
@@ -179,12 +179,12 @@ export const Carousel = ({ questions }: CarouselProps) => {
 
                 <div className="w-full flex justify-between">
                   {isWelcome || count === 0 ? (
-                    ""
+                    <div></div>
                   ) : (
                     <div className="w-[10%] mt-1 items-center justify-start px-1 m-4 hidden md:flex z-[1000]">
                       <button
                         onClick={handlePrev}
-                        className="w-16 h-16 rounded-lg bg-gray-800 flex items-center justify-center text-white z-10 cursor-pointer"
+                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer"
                       >
                         <BsChevronLeft size={42} />
                       </button>
@@ -195,14 +195,14 @@ export const Carousel = ({ questions }: CarouselProps) => {
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className="w-16 h-16 rounded-lg bg-gray-800 flex items-center justify-center text-white z-10 cursor-pointer"
+                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer"
                       >
                         Submit
                       </button>
                     ) : (
                       <button
                         onClick={handleNext}
-                        className="w-16 h-16 rounded-lg bg-gray-800 flex items-center justify-center text-white z-10 cursor-pointer"
+                        className="w-16 h-16 flex items-center justify-center text-[#e85d58] z-10 cursor-pointer"
                       >
                         <BsChevronRight size={42} />
                       </button>
