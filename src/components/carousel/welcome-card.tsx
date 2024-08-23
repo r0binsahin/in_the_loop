@@ -1,5 +1,3 @@
-import { Divider } from "@/app/ui";
-
 export const WelcomeCard = () => {
   return (
     <div>
@@ -7,7 +5,6 @@ export const WelcomeCard = () => {
         <h3 className="font-light font-100 text-sm leading-[150%] md:text-2xl m-0">
           In the loop
         </h3>
-        <Divider color={"secondary"} />
         <h1 className="font-bold text-xl leading-[120%] md:text-3xl m-0">
           improve your office culture
         </h1>

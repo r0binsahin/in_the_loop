@@ -10,7 +10,6 @@ import { Slider, WelcomeCard } from "../";
 import { Answer } from "@/lib/types/Answer";
 import { createAnswer } from "@/lib/actions";
 import { useRouter } from "next/navigation";
-import { Divider } from "@/app/ui";
 
 interface CarouselProps {
   questions: Question[];
@@ -143,7 +142,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
     <motion.div
       animate={{}}
       transition={{ ease: "easeInOut", duration: 0.9 }}
-      className="h-[calc(100vh-40px)] w-full flex items-center justify-center relative pt-10 bg-cover overflow-hidden"
+      className="h-[calc(100vh-40px)] w-full flex items-center justify-center relative bg-cover overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -167,10 +166,11 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 {isWelcome ? (
                   <WelcomeCard />
                 ) : (
-                  <div className="mt-10">
-                    <p>Question {count + 1}</p>
-                    <Divider color={"secondary"} />
-                    <h1 className="font-bold text-xl leading-[140%] md:text-3xl">
+                  <div>
+                    <p className="border-b-2 border-[#f5e9dd] py-2">
+                      Question {count + 1}
+                    </p>
+                    <h1 className="font-bold text-xl leading-[140%] mt-14 md:text-3xl">
                       {questions[count]
                         ? questions[count].text
                         : "Something went wrong!"}
@@ -197,7 +197,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer"
+                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#e85d58] text-2xl font-black z-10 cursor-pointer"
                       >
                         Submit
                       </button>
