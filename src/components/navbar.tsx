@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   SignedIn,
@@ -6,25 +6,26 @@ import {
   SignIn,
   SignInButton,
   UserButton,
-} from '@clerk/nextjs';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { CgProfile } from 'react-icons/cg';
+} from "@clerk/nextjs";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { CgProfile } from "react-icons/cg";
+import { Logo } from "../components";
 
 export const Navbar = () => {
   const pathname = usePathname();
-  const isAdminPage = pathname === '/admin';
+  const isAdminPage = pathname === "/admin";
   return (
-    <div className='navbar bg-secondary max-w-[1100px] w-full'>
-      <div className='flex-none'></div>
-      <div className='flex-1 justify-center'>
-        <Link href='/'>
-          <h1 className='font-black text-accent text-2xl'>In the Loop</h1>
+    <div className="navbar bg-secondary max-w-[1100px] w-full">
+      <div className="flex-none"></div>
+      <div className="flex-1 justify-center">
+        <Link href="/">
+          <Logo />
         </Link>
       </div>
 
       {isAdminPage ? (
-        <div className='x'>
+        <div className="x">
           <SignedOut>
             <SignInButton>
               <span>
@@ -37,7 +38,7 @@ export const Navbar = () => {
           </SignedIn>
         </div>
       ) : (
-        <Link href='/admin' className='admin-page-link'>
+        <Link href="/admin" className="admin-page-link">
           <CgProfile size={20} />
         </Link>
       )}

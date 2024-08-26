@@ -8,7 +8,7 @@ export function groupByMonthAndCalculateAverage(data: Answer[]) {
   }))
 
   data.forEach((item) => {
-    const monthIndex = new Date(item.createdAt).getMonth()
+    const monthIndex = new Date(item.created_at!).getMonth()
     monthlyData[monthIndex].total += item.rating
     monthlyData[monthIndex].count += 1
   })
