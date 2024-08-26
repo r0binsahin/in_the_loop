@@ -1,7 +1,7 @@
 export const WelcomeCard = () => {
   return (
     <div>
-      <div className="flex flex-col uppercase font-space-mono text-[#f5e9dd]">
+      <div className="h-full flex flex-col uppercase font-space-mono text-[#f5e9dd]">
         <h3 className="font-light font-100 text-sm leading-[150%] md:text-2xl m-0">
           In the loop
         </h3>

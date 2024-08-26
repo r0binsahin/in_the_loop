@@ -179,11 +179,11 @@ export const Carousel = ({ questions }: CarouselProps) => {
                   </div>
                 )}
 
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center">
                   {isWelcome || count === 0 ? (
                     <div></div>
                   ) : (
-                    <div className="w-[10%] mt-1 items-center justify-start px-1 m-4 hidden md:flex z-[1000]">
+                    <div className="mt-1 items-center justify-start z-[1000]">
                       <button
                         onClick={handlePrev}
                         className="w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer"
@@ -193,11 +193,11 @@ export const Carousel = ({ questions }: CarouselProps) => {
                     </div>
                   )}
 
-                  <div className="w-[10%] mt-1 items-center justify-end px-1 m-4 hidden md:flex z-[1000]">
+                  <div className="mt-1 items-center justify-end z-[1000]">
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#e85d58] text-2xl font-black z-10 cursor-pointer"
+                        className="btn rounded-full btn-outline btn-secondary"
                       >
                         Submit
                       </button>
