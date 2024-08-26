@@ -148,9 +148,11 @@ export const Carousel = ({ questions }: CarouselProps) => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='absolute w-[150px] h-[150px] rounded-full bg-green-700 animate-[circles_200s_infinite,down_200s_infinite]'></div>
-      <div className='absolute right-0 w-[200px] h-[200px] rounded-full bg-yellow-700 animate-[circles_200s_infinite,up_200s_infinite]'></div>
-      <div className='absolute bottom-0 w-[250px] h-[250px] rounded-full bg-red-800 animate-[circles_200s_infinite,left_200s_infinite]'></div>
+      <div className='absolute top-0 right-[150px] w-[200px] h-[200px] rounded-full bg-yellow-700 animate-[left_200s_infinite_ease-in-out]'></div>
+
+      <div className='absolute top-0 right-0 w-[150px] h-[150px] rounded-full bg-green-700 animate-[down_200s_infinite_ease-in-out]'></div>
+
+      <div className='absolute bottom-[200px] right-[50px] w-[225px] h-[225px] rounded-full bg-red-800 animate-[up_200s_infinite_ease-in-out]'></div>
 
       <div className='mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
         <div
