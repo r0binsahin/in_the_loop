@@ -33,7 +33,7 @@ export default function Advice() {
         const ratings = await getRatingsByQuestionId(+params.id);
         const averageRating = calculateAverageRatingPerQuestion(ratings || []);
 
-        const prompt = `Based on a survey conducted in our office, we scored a ${averageRating} out of 10 on this question: "${foundQuestion.text}". How can we improve this?`;
+        const prompt = `Based on a survey conducted in our office, we scored a ${averageRating} out of 10 on this question: "${foundQuestion.text}". How can we improve this? `;
 
         const supportResponse = await generateAISupport(prompt);
         setAdvice(supportResponse.content);
