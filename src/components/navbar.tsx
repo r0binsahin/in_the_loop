@@ -24,10 +24,10 @@ export const Navbar = () => {
       </div>
 
       {isAdminPage ? (
-        <div className='login-btn-wrapper'>
+        <div className='x'>
           <SignedOut>
             <SignInButton>
-              <span className='border-2 border-black px-4 rounded-lg text-base cursor-pointer font-normal'>
+              <span>
                 <CgProfile size={20} />
               </span>
             </SignInButton>
