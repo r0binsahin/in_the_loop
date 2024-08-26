@@ -1,13 +1,15 @@
 CREATE TABLE IF NOT EXISTS "answers" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"rating" real NOT NULL,
-	"question_id" integer
+	"question_id" integer,
+	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "questions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"text" text NOT NULL,
-	"survey_id" integer
+	"survey_id" integer,
+	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "surveys" (
