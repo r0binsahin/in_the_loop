@@ -22,7 +22,7 @@ export default async function Home() {
   /*   console.log(averageRatingForSurvey1); */
 
   return (
-    <main className="flex justify-center flex-col min-h-screen max-w-[1100px] mx-auto w-full">
+    <main className="flex justify-center flex-col max-w-[1100px] mx-auto w-full">
       <SurveyForm questions={questions} />
     </main>
   );

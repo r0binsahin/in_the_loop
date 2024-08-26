@@ -69,9 +69,13 @@ export const Carousel = ({ questions }: CarouselProps) => {
   }
 
   const updateAnswersOnClick = () => {
-    const newAnswer = { rating: value, question_id: questions[count].id };
-    setAnswers([...answers, newAnswer]);
-    setValue(5);
+    if (questions.length > 0 && count < questions.length) {
+      const newAnswer = { rating: value, question_id: questions[count].id };
+      setAnswers([...answers, newAnswer]);
+      setValue(5);
+    } else {
+      console.error("Invalid count or empty questions array");
+    }
   };
 
   const handleNext = () => {
@@ -90,11 +94,9 @@ export const Carousel = ({ questions }: CarouselProps) => {
     if (count > 0) {
       setCount(count - 1);
     }
-
     const prevAnswers = [...answers];
     prevAnswers.pop();
     setAnswers(prevAnswers);
-    console.log("prev ansers,", answers);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -142,7 +144,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
     <motion.div
       animate={{}}
       transition={{ ease: "easeInOut", duration: 0.9 }}
-      className="h-[calc(100vh-40px)] w-full flex items-center justify-center relative bg-cover overflow-hidden"
+      className="h-[80vh] w-full flex items-center justify-center relative bg-cover overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

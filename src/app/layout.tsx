@@ -4,6 +4,7 @@ import { lexend } from "./ui";
 import { Navbar } from "@/components";
 
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "In the Loop",
@@ -16,13 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${lexend.className} antialiased h-full bg-[#f5e9dd] flex flex-col items-center`}
-      >
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="bg-[#f5e9dd]">
+        <body
+          className={`${lexend.className} antialiased h-full bg-[#f5e9dd] flex flex-col items-center`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
