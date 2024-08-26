@@ -23,8 +23,6 @@ export default function Advice() {
   const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
   const [advice, setAdvice] = useState<string | null>(null);
 
-  const prompt = `Based on a survey conducted in our office, we scored a ${averageRatings} out of 10 on this question: ${question?.text}. How can improve this?`;
-
   useEffect(() => {
     const fetchQuestion = async () => {
       const result = (await getQuestions()) || [];
@@ -62,7 +60,7 @@ export default function Advice() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Ai advice page</h1>
-      <ReactMarkdown children={advice!} remarkPlugins={[remarkGfm]} />,
+      <ReactMarkdown children={advice!} remarkPlugins={[remarkGfm]} />
     </main>
   );
 }
