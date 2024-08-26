@@ -7,7 +7,7 @@ export default async function Result() {
   const averageRatingForSurvey1 =
     calculateAverageRatingPerSurvey(surveyRatings);
   return (
-    <main className="flex justify-center">
+    <main className="flex justify-center flex-col min-h-screen max-w-[1100px] mx-auto w-full">
       <Gauge value={averageRatingForSurvey1} />
     </main>
   );

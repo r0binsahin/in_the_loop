@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lexend.className} antialiased h-full bg-[#f5e9dd]`}>
-        <div className="flex flex-col min-h-screen max-w-[1100px] mx-auto w-full">
-          <Navbar />
-          {children}
-        </div>
+      <body
+        className={`${lexend.className} antialiased h-full bg-[#f5e9dd] flex flex-col items-center`}
+      >
+        <Navbar />
+        {children}
       </body>
     </html>
   );

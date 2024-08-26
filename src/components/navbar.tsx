@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 
 export const Navbar = () => {
   return (
-    <div className="navbar bg-secondary">
+    <div className="navbar bg-secondary max-w-[1100px] w-full">
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
           <svg

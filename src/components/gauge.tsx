@@ -13,7 +13,7 @@ interface GaugeProps {
 
 export const Gauge = ({ value }: GaugeProps) => {
   return (
-    <div className={lexend.variable}>
+    <div className={`${lexend.variable} flex justify-center`}>
       <GaugeComponent
         style={{ width: "80%" }}
         type="semicircle"
