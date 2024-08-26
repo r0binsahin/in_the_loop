@@ -12,6 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.3.3",
     "ai": "^3.3.16",
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.0",

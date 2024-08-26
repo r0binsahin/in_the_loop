@@ -1,38 +1,46 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { CgProfile } from "react-icons/cg";
+import {
+  SignedIn,
+  SignedOut,
+  SignIn,
+  SignInButton,
+  UserButton,
+} from '@clerk/nextjs';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { CgProfile } from 'react-icons/cg';
 
 export const Navbar = () => {
+  const pathname = usePathname();
+  const isAdminPage = pathname === '/admin';
   return (
-    <div className="navbar bg-secondary max-w-[1100px] w-full">
-      <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-5 w-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div>
-      <div className="flex-1 justify-center">
-        <Link href="/">
-          <h1 className="font-black text-accent text-2xl">In the Loop</h1>
+    <div className='navbar bg-secondary max-w-[1100px] w-full'>
+      <div className='flex-none'></div>
+      <div className='flex-1 justify-center'>
+        <Link href='/'>
+          <h1 className='font-black text-accent text-2xl'>In the Loop</h1>
         </Link>
       </div>
-      <div className="flex-none">
-        <Link href="/admin">
+
+      {isAdminPage ? (
+        <div className='login-btn-wrapper'>
+          <SignedOut>
+            <SignInButton>
+              <span className='border-2 border-black px-4 rounded-lg text-base cursor-pointer font-normal'>
+                <CgProfile size={20} />
+              </span>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
+      ) : (
+        <Link href='/admin' className='admin-page-link'>
           <CgProfile size={20} />
         </Link>
-      </div>
+      )}
     </div>
   );
 };
