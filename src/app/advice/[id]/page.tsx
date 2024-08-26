@@ -31,7 +31,7 @@ export default function Advice() {
     };
 
     fetchQuestion();
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     const fetchRatings = async () => {
@@ -41,7 +41,7 @@ export default function Advice() {
       setAverageRatings(newRatings);
     };
     fetchRatings();
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (question && Object.keys(averageRatings).length > 0) {
@@ -60,7 +60,9 @@ export default function Advice() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Ai advice page</h1>
-      <ReactMarkdown children={advice!} remarkPlugins={[remarkGfm]} />
+      {advice && (
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{advice}</ReactMarkdown>
+      )}
     </main>
   );
 }
