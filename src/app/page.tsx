@@ -1,11 +1,11 @@
-import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average-rating-per-question';
-import { Gauge, Slider, SurveyForm, Carousel } from '../components';
+import { calculateAverageRatingPerQuestion } from "@/lib/utils/calculate-average-rating-per-question";
+import { Gauge, Slider, SurveyForm, Carousel } from "../components";
 import {
   getQuestions,
   getRatingsByQuestionId,
   getSurveyRatings,
-} from '../lib/actions';
-import { calculateAverageRatingPerSurvey } from '@/lib/utils/calculate-average-rating-per-survey';
+} from "../lib/actions";
+import { calculateAverageRatingPerSurvey } from "@/lib/utils/calculate-average-rating-per-survey";
 
 export default async function Home() {
   const questions = (await getQuestions()) || [];
@@ -22,7 +22,7 @@ export default async function Home() {
   /*   console.log(averageRatingForSurvey1); */
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between '>
+    <main className="flex justify-center flex-col min-h-screen max-w-[1100px] mx-auto w-full">
       <SurveyForm questions={questions} />
     </main>
   );
