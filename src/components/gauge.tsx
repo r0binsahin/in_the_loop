@@ -9,7 +9,7 @@ const GaugeComponent = dynamic(() => import('react-gauge-component'), {
 interface GaugeProps {
   value: number;
 }
-
+//check new branch deployment
 export const Gauge = ({ value }: GaugeProps) => {
   return (
     <GaugeComponent
