@@ -1,9 +1,3 @@
-'use client';
-
-import { Answer } from '@/lib/types/Answer';
-import { answers } from '@/server/db/schema';
-import { SetStateAction, useState, MouseEvent } from 'react';
-
 interface SliderProps {
   value: number;
   setValue: (value: number) => void;
@@ -15,17 +9,29 @@ export const Slider = ({ value, setValue }: SliderProps) => {
   };
 
   return (
-    <div className='slidecontainer'>
-      <p className='mt-4 mb-2'>Custom range slider:</p>
+    <div className="slidecontainer mt-10">
       <input
-        type='range'
-        min='1'
-        max='10'
+        type="range"
+        min={1}
+        max="10"
         value={value}
         onChange={handleSliderChange}
-        className='slider w-full h-4 bg-gray-300 rounded-lg appearance-none cursor-pointer'
+        className="range range-xs range-accent bg-[#f5e9dd]"
+        step="1"
       />
-      <p className='mt-4'>Current value: {value}</p>
+      <div className="flex w-full justify-between px-2 text-xs">
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+      </div>
+      <p className="mt-8">Current value: {value}</p>
     </div>
   );
 };
