@@ -9,11 +9,13 @@ import { Question } from '@/lib/types/Question';
 import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average-rating-per-question';
 
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+
+import { LoadingSkeleton } from '@/components';
 
 type AverageRatings = { [key: number]: number };
 
@@ -60,8 +62,11 @@ export default function Advice() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Ai advice page</h1>
-      {advice && (
+
+      {advice ? (
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{advice}</ReactMarkdown>
+      ) : (
+        <LoadingSkeleton />
       )}
     </main>
   );
