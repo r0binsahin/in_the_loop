@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS "questions" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "surveys" (
 	"id" serial PRIMARY KEY NOT NULL,
+	"survey_name" varchar NOT NULL,
 	"user_amount" integer NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL
 );

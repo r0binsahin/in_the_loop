@@ -2,6 +2,9 @@
 
 import {
   queryCreateAnswer,
+  queryCreateQuestion,
+  queryCreateSurvey,
+  queryGetAllSurveys,
   queryGetQuestions,
   queryGetRatingsByQuestionId,
   queryGetSurveyAnswersBySurveyId,
@@ -9,6 +12,8 @@ import {
 } from '@/server/queries';
 import { Answer } from './types/Answer';
 import { giveAdvice } from './advice';
+import { Survey } from './types/Survey';
+import { Question } from './types/Question';
 
 export const getQuestions = async () => {
   try {
@@ -62,6 +67,31 @@ export const getSurveyAnswers = async (surveyId: number) => {
     const surveyAnswers = await queryGetSurveyAnswersBySurveyId(surveyId);
     if (!surveyAnswers) return [];
     return surveyAnswers;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createQuestion = async (question: Question) => {
+  try {
+    await queryCreateQuestion(question);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createSurvey = async (survey: Survey) => {
+  try {
+    await queryCreateSurvey(survey);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllSurveys = async () => {
+  try {
+    const surveysArray = await queryGetAllSurveys();
+    return surveysArray;
   } catch (error) {
     console.error(error);
   }

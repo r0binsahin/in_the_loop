@@ -1,5 +1,5 @@
 {
-  "id": "5cad1f04-e632-4d54-8c57-78bdd4c6f9bd",
+  "id": "0ea98535-fcfd-43b8-ab5e-a875ebf6bb15",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -110,6 +110,12 @@
           "name": "id",
           "type": "serial",
           "primaryKey": true,
+          "notNull": true
+        },
+        "survey_name": {
+          "name": "survey_name",
+          "type": "varchar",
+          "primaryKey": false,
           "notNull": true
         },
         "user_amount": {
