@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 import { createQuestion, getQuestionsBySurveyId } from '@/lib/actions';
 import { Question } from '@/lib/types/Question';
 
@@ -11,6 +16,8 @@ export const CreateQuestionForm = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const params = useParams();
+  const pathName = usePathname();
+  const url = `/surveys/${params.id}/add`;
 
   const [questions, setQuestions] = useState<Question[] | []>([]);
 
@@ -31,6 +38,7 @@ export const CreateQuestionForm = () => {
       await createQuestion(newQuestion);
       setQuestionText('');
       fetchQuestions();
+
       /*       router.push(`/surveys/${surveyId}`); // Redirect back to the survey page after submission */
     } catch (err) {
       setError('Failed to create question. Please try again.');
@@ -76,11 +84,13 @@ export const CreateQuestionForm = () => {
           </button>
         </form>
       </div>
-      <div>
-        {questions.map((q) => (
-          <h3 key={q.id}>{q.text}</h3>
-        ))}
-      </div>
+      {pathName === url && (
+        <div>
+          {questions.map((q) => (
+            <h3 key={q.id}>{q.text}</h3>
+          ))}
+        </div>
+      )}
     </>
   );
 };

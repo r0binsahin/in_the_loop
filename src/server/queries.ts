@@ -135,3 +135,11 @@ export const queryGetQuestionsBySurveyId = async (surveyId: number) => {
     console.error(error);
   }
 };
+
+export const queryDeleteQuestion = async (id: number) => {
+  try {
+    await db.delete(questions).where(eq(questions.id, id));
+  } catch (error) {
+    console.error(error);
+  }
+};

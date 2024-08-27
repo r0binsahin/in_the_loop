@@ -1,4 +1,3 @@
-import useLeavePageConfirm from '@/lib/utils/use-leave-confirm';
 import { Carousel } from '../components';
 import { getQuestionsBySurveyId } from '../lib/actions';
 

@@ -73,12 +73,20 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
                   Add questions
                 </Link>
               ) : (
-                <Link
-                  href={`/surveys/${survey.id}/update`}
-                  className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
-                >
-                  update survey
-                </Link>
+                <div>
+                  <Link
+                    href={`/surveys/${survey.id}/add`}
+                    className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                  >
+                    Add questions
+                  </Link>
+                  <Link
+                    href={`/surveys/${survey.id}/update`}
+                    className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                  >
+                    update survey
+                  </Link>
+                </div>
               )}
             </div>
           )}

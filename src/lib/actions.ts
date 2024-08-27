@@ -4,6 +4,7 @@ import {
   queryCreateAnswer,
   queryCreateQuestion,
   queryCreateSurvey,
+  queryDeleteQuestion,
   queryGetAllSurveys,
   queryGetQuestions,
   queryGetQuestionsBySurveyId,
@@ -104,6 +105,14 @@ export const getQuestionsBySurveyId = async (surveyId: number) => {
   try {
     const questionsArray = await queryGetQuestionsBySurveyId(surveyId);
     return questionsArray;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteQuestion = async (id: number) => {
+  try {
+    await queryDeleteQuestion(id);
   } catch (error) {
     console.error(error);
   }
