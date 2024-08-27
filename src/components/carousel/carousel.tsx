@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import useMeasure from "react-use-measure";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { Question } from "@/lib/types/Question";
+import { useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import useMeasure from 'react-use-measure';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { Question } from '@/lib/types/Question';
 
-import { Slider, WelcomeCard } from "../";
-import { Answer } from "@/lib/types/Answer";
-import { createAnswer } from "@/lib/actions";
-import { useRouter } from "next/navigation";
+import { Slider, WelcomeCard } from '../';
+import { Answer } from '@/lib/types/Answer';
+import { createAnswer } from '@/lib/actions';
+import { useRouter } from 'next/navigation';
+import useLeavePageConfirm from '@/lib/utils/use-leave-confirm';
 
 interface CarouselProps {
   questions: Question[];
@@ -24,6 +25,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
+
+  useLeavePageConfirm(true);
 
   const getDirection = () => {
     if (prev) {
@@ -54,7 +57,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
   };
 
   const spring = {
-    type: "spring",
+    type: 'spring',
     damping: 20,
     stiffness: 100,
   };
@@ -74,7 +77,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
       setAnswers([...answers, newAnswer]);
       setValue(5);
     } else {
-      console.error("Invalid count or empty questions array");
+      console.error('Invalid count or empty questions array');
     }
   };
 
@@ -121,7 +124,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
 
   const submitAnswers = async () => {
     try {
-      if (answers.length === 0) console.log("no answers");
+      if (answers.length === 0) console.log('no answers');
 
       const newAnswer = { rating: value, question_id: questions[count].id };
       const allAnswers = [...answers, newAnswer];
@@ -134,79 +137,79 @@ export const Carousel = ({ questions }: CarouselProps) => {
       );
 
       setAnswers([]);
-      router.push("/result");
+      router.push('/result');
     } catch (error) {
-      console.error("Error creating answers:", error);
+      console.error('Error creating answers:', error);
     }
   };
 
   return (
     <motion.div
       animate={{}}
-      transition={{ ease: "easeInOut", duration: 0.9 }}
-      className="h-[80vh] w-full flex items-center justify-center relative bg-cover overflow-hidden"
+      transition={{ ease: 'easeInOut', duration: 0.9 }}
+      className='h-[80vh] w-full flex items-center justify-center relative bg-cover overflow-hidden'
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="mt-2 flex items-center justify-center w-full overflow-hidden h-full">
+      <div className='mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
         <div
           ref={ref}
-          className="w-full h-full flex items-center justify-center"
+          className='w-full h-full flex items-center justify-center'
         >
           <AnimatePresence custom={{ direction, width }}>
             {
               <motion.div
                 key={count}
                 variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
+                initial='enter'
+                animate='center'
+                exit='exit'
                 transition={spring}
                 custom={{ direction, width }}
-                className="z-10 flex flex-col min-h-[230px] bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10"
+                className='z-10 flex flex-col min-h-[230px] bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10'
               >
                 {isWelcome ? (
                   <WelcomeCard />
                 ) : (
                   <div>
-                    <p className="border-b-2 border-[#f5e9dd] py-2">
+                    <p className='border-b-2 border-[#f5e9dd] py-2'>
                       Question {count + 1}
                     </p>
-                    <h1 className="font-bold text-xl leading-[140%] mt-14 md:text-3xl">
+                    <h1 className='font-bold text-xl leading-[140%] mt-14 md:text-3xl'>
                       {questions[count]
                         ? questions[count].text
-                        : "Something went wrong!"}
+                        : 'Something went wrong!'}
                     </h1>
                     <Slider value={value} setValue={setValue} />
                   </div>
                 )}
 
-                <div className="w-full flex justify-between items-center">
+                <div className='w-full flex justify-between items-center'>
                   {isWelcome || count === 0 ? (
                     <div></div>
                   ) : (
-                    <div className="mt-1 items-center justify-start z-[1000]">
+                    <div className='mt-1 items-center justify-start z-[1000]'>
                       <button
                         onClick={handlePrev}
-                        className="w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer"
+                        className='w-16 h-16 rounded-lg flex items-center justify-center text-[#f5e9dd] z-10 cursor-pointer'
                       >
                         <BsChevronLeft size={42} />
                       </button>
                     </div>
                   )}
 
-                  <div className="mt-1 items-center justify-end z-[1000]">
+                  <div className='mt-1 items-center justify-end z-[1000]'>
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className="btn rounded-full btn-outline btn-secondary"
+                        className='btn rounded-full btn-outline btn-secondary'
                       >
                         Submit
                       </button>
                     ) : (
                       <button
                         onClick={handleNext}
-                        className="w-16 h-16 flex items-center justify-center text-[#e85d58] z-10 cursor-pointer"
+                        className='w-16 h-16 flex items-center justify-center text-[#e85d58] z-10 cursor-pointer'
                       >
                         <BsChevronRight size={42} />
                       </button>
