@@ -11,7 +11,7 @@ import {
 export const surveys = pgTable('surveys', {
   id: serial('id').primaryKey(),
   survey_name: varchar('survey_name').notNull(),
-  user_amount: integer('user_amount').notNull(),
+  user_amount: integer('user_amount').notNull().default(0),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 

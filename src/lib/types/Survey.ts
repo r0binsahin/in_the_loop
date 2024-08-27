@@ -1,6 +1,6 @@
 export type Survey = {
-  id: number;
+  id?: number;
   survey_name: string;
-  user_amount: number;
-  createdAt: Date;
+  user_amount?: number;
+  createdAt?: Date;
 };

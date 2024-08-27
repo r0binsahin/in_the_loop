@@ -14,6 +14,7 @@ import { Answer } from './types/Answer';
 import { giveAdvice } from './advice';
 import { Survey } from './types/Survey';
 import { Question } from './types/Question';
+import { revalidatePath } from 'next/cache';
 
 export const getQuestions = async () => {
   try {
@@ -80,9 +81,10 @@ export const createQuestion = async (question: Question) => {
   }
 };
 
-export const createSurvey = async (survey: Survey) => {
+export const createSurvey = async (surveyName: string) => {
   try {
-    await queryCreateSurvey(survey);
+    await queryCreateSurvey(surveyName);
+    revalidatePath('/surveys');
   } catch (error) {
     console.error(error);
   }

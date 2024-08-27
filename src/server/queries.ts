@@ -103,9 +103,12 @@ export const queryCreateQuestion = async (question: Question) => {
   }
 };
 
-export const queryCreateSurvey = async (survey: Survey) => {
+export const queryCreateSurvey = async (surveyName: string) => {
   try {
-    await db.insert(surveys).values(survey);
+    await db
+      .insert(surveys)
+      .values({ survey_name: surveyName, user_amount: 0 });
+    console.log('survey name:', surveyName);
   } catch (error) {
     console.error(error);
   }
