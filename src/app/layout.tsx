@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { lexend } from "./ui";
+import { lexend, quicksand } from "./ui";
 import { Navbar } from "@/components";
 
 import "./globals.css";
@@ -20,7 +20,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="bg-[#f5e9dd]">
         <body
-          className={`${lexend.className} antialiased h-full bg-[#f5e9dd] flex flex-col items-center`}
+          className={`${quicksand.className} antialiased h-full bg-[#f5e9dd] flex flex-col items-center`}
         >
           <Navbar />
           {children}
