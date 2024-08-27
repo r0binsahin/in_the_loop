@@ -36,11 +36,8 @@ export default function Advice() {
         const prompt = `Based on a survey conducted in our office, we scored a ${averageRating} out of 10 on this question: "${foundQuestion.text}". How can we improve this? `;
 
         const supportResponse = await generateAISupport(prompt);
-        const formattedResponse = supportResponse.content
-          ?.split('\n') // Split by newline to get each line as an array element
-          .map((line) => line.replace(/^(\d+\.)/, '\n\n$3')) // Add two newlines before lines starting with numbers
-          .join('\n'); // Join them back into a single string
-        setAdvice(formattedResponse!);
+
+        setAdvice(supportResponse.content);
       }
     };
 
