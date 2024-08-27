@@ -66,13 +66,19 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
           {activeSurveyId === survey.id && (
             <div>
               {questionsMap[survey.id]?.length === 0 ? (
-                <button className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'>
+                <Link
+                  href={`/surveys/${survey.id}/add`}
+                  className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                >
                   Add questions
-                </button>
+                </Link>
               ) : (
-                <button className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'>
+                <Link
+                  href={`/surveys/${survey.id}/update`}
+                  className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                >
                   update survey
-                </button>
+                </Link>
               )}
             </div>
           )}

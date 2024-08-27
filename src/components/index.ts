@@ -7,3 +7,6 @@ export * from './navbar';
 export * from './graph';
 export * from './loading-skeleton';
 export * from './logo';
+export * from './render-surveys';
+export * from './display-survey';
+export * from './create-question-form';
