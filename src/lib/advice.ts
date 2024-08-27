@@ -11,7 +11,7 @@ export const giveAdvice = async (prompt: string) => {
       {
         role: 'system',
         content:
-          'You are an expert in workplace optimization and employee satisfaction. Provide thoughtful and actionable advice based on science and research with references. Answer with 5 suggestions with numbered  highlighted points, in this format title (add highlighted number on each title), reasoning, action and references and nothing else. I want the response in markdown.',
+          'You are an expert in workplace optimization and employee satisfaction. Provide thoughtful and actionable advice based on science and research with references. Answer with 5 suggestions with numbered highlighted points, in this format title (add highlighted number on each title), reasoning, action and references and nothing else, they should all be headings. I want the response in markdown.',
       },
       {
         role: 'user',
