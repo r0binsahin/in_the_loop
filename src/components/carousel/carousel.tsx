@@ -73,7 +73,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
 
   const updateAnswersOnClick = () => {
     if (questions.length > 0 && count < questions.length) {
-      const newAnswer = { rating: value, question_id: questions[count].id };
+      const newAnswer = { rating: value, question_id: questions[count].id! };
       setAnswers([...answers, newAnswer]);
       setValue(5);
     } else {
@@ -126,7 +126,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
     try {
       if (answers.length === 0) console.log('no answers');
 
-      const newAnswer = { rating: value, question_id: questions[count].id };
+      const newAnswer = { rating: value, question_id: questions[count].id! };
       const allAnswers = [...answers, newAnswer];
       setValue(5);
 
