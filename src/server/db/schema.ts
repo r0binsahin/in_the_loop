@@ -4,12 +4,14 @@ import {
   integer,
   text,
   real,
+  varchar,
   timestamp,
 } from 'drizzle-orm/pg-core';
 
 export const surveys = pgTable('surveys', {
   id: serial('id').primaryKey(),
-  user_amount: integer('user_amount').notNull(),
+  survey_name: varchar('survey_name').notNull(),
+  user_amount: integer('user_amount').notNull().default(0),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 

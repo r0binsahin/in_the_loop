@@ -21,8 +21,8 @@ export const QuestionsForAdvice = ({
     const fetchRatings = async () => {
       const newRatings: AverageRatings = {};
       for (const question of questions) {
-        const ratings = await getRatingsByQuestionId(question.id);
-        newRatings[question.id] = calculateAverageRatingPerQuestion(
+        const ratings = await getRatingsByQuestionId(question.id!);
+        newRatings[question.id!] = calculateAverageRatingPerQuestion(
           ratings || []
         );
       }
@@ -42,17 +42,17 @@ export const QuestionsForAdvice = ({
         <div key={q.id}>
           <h3>{q.text}</h3>
           <p>
-            {averageRatings[q.id] !== undefined
-              ? averageRatings[q.id]
+            {averageRatings[q.id!] !== undefined
+              ? averageRatings[q.id!]
               : 'Loading...'}
           </p>
-          {averageRatings[q.id] < 6 ? (
+          {averageRatings[q.id!] < 6 ? (
             <Link href={`/advice/${q.id}`}>Get Advice</Link>
           ) : (
             <span>Good enough</span>
           )}
-          <button onClick={() => handleShowGraph(q.id)}>Show Graph</button>
-          {showGraphStates[q.id] && <Graph data={graphData[q.id]} />}
+          <button onClick={() => handleShowGraph(q.id!)}>Show Graph</button>
+          {showGraphStates[q.id!] && <Graph data={graphData[q.id!]} />}
         </div>
       ))}
     </>

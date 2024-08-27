@@ -1,5 +1,5 @@
 export type Question = {
-  id: number;
+  id?: number;
   text: string;
   survey_id: number | null;
   createdAt?: Date;

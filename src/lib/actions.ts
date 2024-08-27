@@ -2,13 +2,21 @@
 
 import {
   queryCreateAnswer,
+  queryCreateQuestion,
+  queryCreateSurvey,
+  queryDeleteQuestion,
+  queryGetAllSurveys,
   queryGetQuestions,
+  queryGetQuestionsBySurveyId,
   queryGetRatingsByQuestionId,
   queryGetSurveyAnswersBySurveyId,
   queryGetSurveyRatingsBySurveyId,
 } from '@/server/queries';
 import { Answer } from './types/Answer';
 import { giveAdvice } from './advice';
+import { Survey } from './types/Survey';
+import { Question } from './types/Question';
+import { revalidatePath } from 'next/cache';
 
 export const getQuestions = async () => {
   try {
@@ -62,6 +70,49 @@ export const getSurveyAnswers = async (surveyId: number) => {
     const surveyAnswers = await queryGetSurveyAnswersBySurveyId(surveyId);
     if (!surveyAnswers) return [];
     return surveyAnswers;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createQuestion = async (question: Question) => {
+  try {
+    await queryCreateQuestion(question);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const createSurvey = async (surveyName: string) => {
+  try {
+    await queryCreateSurvey(surveyName);
+    revalidatePath('/surveys');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllSurveys = async () => {
+  try {
+    const surveysArray = await queryGetAllSurveys();
+    return surveysArray;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getQuestionsBySurveyId = async (surveyId: number) => {
+  try {
+    const questionsArray = await queryGetQuestionsBySurveyId(surveyId);
+    return questionsArray;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteQuestion = async (id: number) => {
+  try {
+    await queryDeleteQuestion(id);
   } catch (error) {
     console.error(error);
   }
