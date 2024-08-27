@@ -36,7 +36,11 @@ export default function Advice() {
         const prompt = `Based on a survey conducted in our office, we scored a ${averageRating} out of 10 on this question: "${foundQuestion.text}". How can we improve this? `;
 
         const supportResponse = await generateAISupport(prompt);
-        setAdvice(supportResponse.content);
+        const formattedResponse = supportResponse.content
+          ?.split('\n') // Split by newline to get each line as an array element
+          .map((line) => line.replace(/^(\d+\.)/, '\n\n$3')) // Add two newlines before lines starting with numbers
+          .join('\n'); // Join them back into a single string
+        setAdvice(formattedResponse!);
       }
     };
 
@@ -44,9 +48,7 @@ export default function Advice() {
   }, [params.id]);
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1>AI Advice Page</h1>
-
+    <main className='w-full px-24'>
       {advice ? (
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{advice}</ReactMarkdown>
       ) : (

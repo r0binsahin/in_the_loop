@@ -1,37 +1,41 @@
 'use client';
-
 import { getRatingsByQuestionId } from '@/lib/actions';
 import { Question } from '@/lib/types/Question';
 import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average-rating-per-question';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-interface QuestionsForAdviceProps {
-  questions: Question[];
-}
-
+import Graph from './graph';
+import { GraphData } from './graph';
 type AverageRatings = { [key: number]: number };
-
-export const QuestionsForAdvice = ({ questions }: QuestionsForAdviceProps) => {
+type ShowGraphStates = { [key: number]: boolean };
+export const QuestionsForAdvice = ({
+  questions,
+  graphData,
+}: {
+  questions: Question[];
+  graphData: { [key: number]: GraphData[] };
+}) => {
   const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
-
+  const [showGraphStates, setShowGraphStates] = useState<ShowGraphStates>({});
   useEffect(() => {
     const fetchRatings = async () => {
       const newRatings: AverageRatings = {};
-
       for (const question of questions) {
         const ratings = await getRatingsByQuestionId(question.id);
         newRatings[question.id] = calculateAverageRatingPerQuestion(
           ratings || []
         );
       }
-
       setAverageRatings(newRatings);
     };
-
     fetchRatings();
   }, [questions]);
-
+  const handleShowGraph = (questionId: number) => {
+    setShowGraphStates((prevStates) => ({
+      ...prevStates,
+      [questionId]: !prevStates[questionId],
+    }));
+  };
   return (
     <>
       {questions.map((q) => (
@@ -47,6 +51,8 @@ export const QuestionsForAdvice = ({ questions }: QuestionsForAdviceProps) => {
           ) : (
             <span>Good enough</span>
           )}
+          <button onClick={() => handleShowGraph(q.id)}>Show Graph</button>
+          {showGraphStates[q.id] && <Graph data={graphData[q.id]} />}
         </div>
       ))}
     </>
