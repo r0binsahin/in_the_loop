@@ -78,7 +78,7 @@ export const CreateQuestionForm = () => {
       </div>
       <div>
         {questions.map((q) => (
-          <h3>{q.text}</h3>
+          <h3 key={q.id}>{q.text}</h3>
         ))}
       </div>
     </>

@@ -24,6 +24,6 @@ export const DisplaySurvey = () => {
     };
 
     fetchQustions();
-  }, []);
+  }, [params.id]);
   return <Carousel questions={questions!} />;
 };
