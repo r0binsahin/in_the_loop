@@ -2,6 +2,7 @@
 
 import { createSurvey } from '@/lib/actions';
 import { Survey } from '@/lib/types/Survey';
+import Link from 'next/link';
 import { useState } from 'react';
 
 interface RenderSurveysProps {
@@ -28,7 +29,9 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
           key={survey.id}
           className='bg-gray-800 text-white p-4 rounded-lg shadow-md'
         >
-          <h1 className='text-xl font-semibold'>{survey.survey_name}</h1>
+          <Link href={`/surveys/${survey.id}`}>
+            <h1 className='text-xl font-semibold'>{survey.survey_name}</h1>
+          </Link>
         </div>
       ))}
       <button

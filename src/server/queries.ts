@@ -122,3 +122,16 @@ export const queryGetAllSurveys = async () => {
     console.error(error);
   }
 };
+
+export const queryGetQuestionsBySurveyId = async (surveyId: number) => {
+  try {
+    const surveyQuestionsArray = await db
+      .select()
+      .from(questions)
+      .where(eq(questions.survey_id, surveyId));
+
+    return surveyQuestionsArray;
+  } catch (error) {
+    console.error(error);
+  }
+};

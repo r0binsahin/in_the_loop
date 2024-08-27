@@ -6,6 +6,7 @@ import {
   queryCreateSurvey,
   queryGetAllSurveys,
   queryGetQuestions,
+  queryGetQuestionsBySurveyId,
   queryGetRatingsByQuestionId,
   queryGetSurveyAnswersBySurveyId,
   queryGetSurveyRatingsBySurveyId,
@@ -94,6 +95,15 @@ export const getAllSurveys = async () => {
   try {
     const surveysArray = await queryGetAllSurveys();
     return surveysArray;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getQuestionsBySurveyId = async (surveyId: number) => {
+  try {
+    const questionsArray = await queryGetQuestionsBySurveyId(surveyId);
+    return questionsArray;
   } catch (error) {
     console.error(error);
   }
