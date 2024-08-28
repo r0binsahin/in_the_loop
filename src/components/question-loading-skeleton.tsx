@@ -1,13 +1,13 @@
 import React from "react";
 
-export const LoadingSkeleton = () => {
+export const QuestionLoadingSkeleton = () => {
   return (
-    <div className="min-h-screen bg-[#f5e9dd] max-w-4xl mx-auto">
-      <div className="w-full mx-auto px-4 py-8">
-        {[1, 2, 3].map((item) => (
+    <div className="bg-[#f5e9dd] w-10/12">
+      <div>
+        {[1, 2, 3, 4, 5].map((item) => (
           <div
             key={item}
-            className="w-10/12 mb-8 pb-4 border-b border-primary flex justify-between animate-pulse"
+            className="mb-8 pb-4 border-b border-primary flex justify-between animate-pulse"
           >
             <div className="w-3/4">
               <div className="h-4 bg-gray-400 rounded w-full mb-2"></div>
@@ -23,4 +23,4 @@ export const LoadingSkeleton = () => {
   );
 };
 
-export default LoadingSkeleton;
+export default QuestionLoadingSkeleton;
