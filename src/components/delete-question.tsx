@@ -11,7 +11,7 @@ export const DeleteQuestion = () => {
   const params = useParams();
 
   const [questions, setQuestions] = useState<Question[] | []>([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchQuestions = async () => {
     try {
@@ -28,13 +28,13 @@ export const DeleteQuestion = () => {
   }, []);
 
   const deleteQuestionById = async (id: number) => {
-    setLoading(true);
+    setIsLoading(true);
     try {
       await deleteQuestion(id);
     } catch (error) {
       console.error(error, "Could not delete question!");
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -55,7 +55,7 @@ export const DeleteQuestion = () => {
               onClick={() => handleDelete(que.id!)}
               className="btn btn-accent p-1 text-secondary sm:px-8"
             >
-              {loading ? <Spinner /> : "Delete"}
+              {isLoading ? <Spinner /> : "Delete"}
             </button>
           </div>
         ))
