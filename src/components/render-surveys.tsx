@@ -52,9 +52,9 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   };
 
   return (
-    <div className="py-6 flex flex-col items-center w-full">
+    <div className="h-full pt-6 pb-12 flex flex-col items-center w-full">
       <h2 className="text-center text-3xl font-bold mb-8">All Surveys</h2>
-      <div className="space-y-6 flex flex-col w-3/4 sm:w-1/2">
+      <div className="space-y-5 flex flex-col w-3/4 sm:w-1/2">
         {surveys.map((survey) => (
           <div
             key={survey.id}
@@ -111,27 +111,29 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
             )}
           </div>
         ))}
-
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-semibold"
+          className="w-1/2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold mx-auto"
         >
-          Add New Survey
+          Add Survey
         </button>
 
         {showForm && (
-          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-2 mt-4 flex flex-col items-center"
+          >
             <input
               type="text"
               value={surveyName}
               onChange={(e) => setSurveyName(e.target.value)}
               placeholder="Survey Name"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               type="submit"
-              className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold"
+              className="w-1/2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold"
             >
               Create Survey
             </button>
