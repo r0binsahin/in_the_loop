@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Graph from './graph';
 import { GraphData } from './graph';
 import { Spinner } from './spinner';
+import { usePathname } from 'next/navigation';
 
 type AverageRatings = { [key: number]: number };
 type ShowGraphStates = { [key: number]: boolean };
@@ -21,29 +22,44 @@ export const QuestionsForAdvice = ({
 }: QuestionsForAdviceProps) => {
   const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
   const [showGraphStates, setShowGraphStates] = useState<ShowGraphStates>({});
+  const pathName = usePathname();
+
+  const [isAdminPage, setIsAdminPage] = useState(false);
+
+  useEffect(() => {
+    setIsAdminPage(pathName.includes('admin'));
+  }, [pathName]);
+
   useEffect(() => {
     const fetchRatings = async () => {
       const newRatings: AverageRatings = {};
+
       for (const question of questions) {
         const ratings = await getRatingsByQuestionId(question.id!);
+
         newRatings[question.id!] = calculateAverageRatingPerQuestion(
           ratings || []
         );
       }
+
       setAverageRatings(newRatings);
     };
+
     fetchRatings();
   }, [questions]);
+
   const handleShowGraph = (questionId: number) => {
     setShowGraphStates((prevStates) => ({
       ...prevStates,
       [questionId]: !prevStates[questionId],
     }));
   };
+
   function roundToOneDecimal(number: number) {
     if (isNaN(number)) {
       return 'No answers yet';
     }
+
     return Math.round(number * 10) / 10;
   }
 
@@ -79,17 +95,19 @@ export const QuestionsForAdvice = ({
               Show Graph
             </button>
 
-            {averageRatings[q.id!] < 6 ? (
-              <button className='btn btn-primary text-secondary'>
-                <Link href={`/admin/advice/${q.id}`} className=''>
-                  Get Advice
-                </Link>
-              </button>
-            ) : (
-              <div className='flex items-center text-green-600 font-bold'>
-                Good enough
-              </div>
-            )}
+            {averageRatings[q.id!] < 6
+              ? isAdminPage && (
+                  <button className='btn btn-primary text-secondary'>
+                    <Link href={`/admin/advice/${q.id}`} className=''>
+                      Get Advice
+                    </Link>
+                  </button>
+                )
+              : isAdminPage && (
+                  <div className='flex items-center text-green-600 font-bold'>
+                    Good enough
+                  </div>
+                )}
           </div>
           {showGraphStates[q.id!] && <Graph data={graphData[q.id!]} />}
         </div>
