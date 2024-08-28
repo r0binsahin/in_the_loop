@@ -8,5 +8,9 @@ export default async function Result() {
   const averageRatingForSurvey1 =
     calculateAverageRatingPerSurvey(surveyRatings);
 
-  return <Gauge value={averageRatingForSurvey1} />;
+  return (
+    <main className=' w-full flex flex-col justify-center items-center'>
+      <Gauge value={averageRatingForSurvey1} />
+    </main>
+  );
 }
