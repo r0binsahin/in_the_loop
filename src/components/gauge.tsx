@@ -14,7 +14,7 @@ interface GaugeProps {
 export const Gauge = ({ value }: GaugeProps) => {
   return (
     <div
-      className={`${lexend.variable} flex justify-center items-center w-full md:w-[60%] mx-auto  border-b-4 border-[#e85d58]`}
+      className={`${lexend.variable} flex justify-center items-center w-full md:w-[50%] mx-auto  border-b-4 border-[#e85d58]`}
     >
       <GaugeComponent
         style={{
