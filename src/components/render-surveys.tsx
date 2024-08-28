@@ -62,13 +62,11 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
           >
             <div className="flex items-center justify-between">
               <Link href={`/surveys/${survey.id}`}>
-                <h1 className="text-xl font-semibold uppercase">
-                  {survey.survey_name}
-                </h1>
+                <h1 className="text-xl font-semibold">{survey.survey_name}</h1>
               </Link>
               <button
                 onClick={() => handleSurvey(survey.id!)}
-                className="min-h-6 min-w-6 rounded-lg opacity-60 hover:opacity-100 focus:opacity-100 transition mt-2"
+                className="rounded-lg opacity-60 hover:opacity-100 focus:opacity-100 transition mt-2"
               >
                 <FaPencilAlt />
               </button>
@@ -81,7 +79,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
                     <li>
                       <Link
                         href={`/surveys/${survey.id}/add`}
-                        className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-xs sm:text-base"
+                        className="btn btn-primary text-secondary"
                       >
                         Add questions
                       </Link>
@@ -91,7 +89,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
                       <li>
                         <Link
                           href={`/surveys/${survey.id}/add`}
-                          className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-sm sm:text-base"
+                          className="btn btn-primary text-secondary"
                         >
                           Add questions
                         </Link>
@@ -99,7 +97,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
                       <li>
                         <Link
                           href={`/surveys/${survey.id}/update`}
-                          className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-sm sm:text-base"
+                          className="btn btn-primary text-secondary"
                         >
                           Update survey
                         </Link>
@@ -113,7 +111,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
         ))}
         <button
           onClick={() => setShowForm(!showForm)}
-          className="w-1/2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold mx-auto"
+          className="w-1/2 btn btn-primary text-secondary mx-auto"
         >
           Add Survey
         </button>
@@ -133,7 +131,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
             />
             <button
               type="submit"
-              className="w-1/2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold"
+              className="w-1/2 btn btn-primary text-secondary"
             >
               Create Survey
             </button>
