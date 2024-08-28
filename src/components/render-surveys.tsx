@@ -5,6 +5,7 @@ import { Question } from "@/lib/types/Question";
 import { Survey } from "@/lib/types/Survey";
 import Link from "next/link";
 import { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 
 interface RenderSurveysProps {
   surveys: Survey[];
@@ -38,86 +39,105 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   };
 
   const handleSurvey = async (id: number) => {
-    const result = await fetchQuestions(id);
-    setQuestionsMap((prev) => ({
-      ...prev,
-      [id]: result,
-    }));
-    setActiveSurveyId(id);
+    if (activeSurveyId === id) {
+      setActiveSurveyId(null);
+    } else {
+      const result = await fetchQuestions(id);
+      setQuestionsMap((prev) => ({
+        ...prev,
+        [id]: result,
+      }));
+      setActiveSurveyId(id);
+    }
   };
 
   return (
-    <div className="p-4 space-y-6 flex flex-col items-center w-3/4 sm:w-1/2">
-      {surveys.map((survey) => (
-        <div
-          key={survey.id}
-          className="bg-primary flex flex-col items-center min-w-full text-white p-4 rounded-lg shadow-md"
-        >
-          <Link href={`/surveys/${survey.id}`}>
-            <h1 className="text-xl font-semibold">{survey.survey_name}</h1>
-          </Link>
-          <button
-            onClick={() => handleSurvey(survey.id!)}
-            className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition mt-2"
+    <div className="py-6 flex flex-col items-center w-full">
+      <h2 className="text-center text-3xl font-bold mb-8">All Surveys</h2>
+      <div className="space-y-6 flex flex-col w-3/4 sm:w-1/2">
+        {surveys.map((survey) => (
+          <div
+            key={survey.id}
+            className="flex flex-col gap-4 border-b border-black pb-4"
           >
-            Handle Survey
-          </button>
-
-          {activeSurveyId === survey.id && (
-            <div className="">
-              {questionsMap[survey.id]?.length === 0 ? (
-                <Link
-                  href={`/surveys/${survey.id}/add`}
-                  className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                >
-                  Add questions
-                </Link>
-              ) : (
-                <div className="flex gap-2">
-                  <Link
-                    href={`/surveys/${survey.id}/add`}
-                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                  >
-                    Add questions
-                  </Link>
-                  <Link
-                    href={`/surveys/${survey.id}/update`}
-                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-                  >
-                    update survey
-                  </Link>
-                </div>
-              )}
+            <div className="flex items-center justify-between">
+              <Link href={`/surveys/${survey.id}`}>
+                <h1 className="text-xl font-semibold uppercase">
+                  {survey.survey_name}
+                </h1>
+              </Link>
+              <button
+                onClick={() => handleSurvey(survey.id!)}
+                className="min-h-6 min-w-6 rounded-lg opacity-60 hover:opacity-100 focus:opacity-100 transition mt-2"
+              >
+                <FaPencilAlt />
+              </button>
             </div>
-          )}
-        </div>
-      ))}
 
-      <button
-        onClick={() => setShowForm(!showForm)}
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-      >
-        Add Survey
-      </button>
+            {activeSurveyId === survey.id && (
+              <div className="flex gap-4 justify-center w-full">
+                <ul className="">
+                  {questionsMap[survey.id]?.length === 0 ? (
+                    <li>
+                      <Link
+                        href={`/surveys/${survey.id}/add`}
+                        className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-xs sm:text-base"
+                      >
+                        Add questions
+                      </Link>
+                    </li>
+                  ) : (
+                    <div className="flex gap-4">
+                      <li>
+                        <Link
+                          href={`/surveys/${survey.id}/add`}
+                          className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-sm sm:text-base"
+                        >
+                          Add questions
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/surveys/${survey.id}/update`}
+                          className="block bg-primary text-white px-3 py-2 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition text-sm sm:text-base"
+                        >
+                          Update survey
+                        </Link>
+                      </li>
+                    </div>
+                  )}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
 
-      {showForm && (
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <input
-            type="text"
-            value={surveyName}
-            onChange={(e) => setSurveyName(e.target.value)}
-            placeholder="Survey Name"
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
-          >
-            Create Survey
-          </button>
-        </form>
-      )}
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition font-semibold"
+        >
+          Add New Survey
+        </button>
+
+        {showForm && (
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            <input
+              type="text"
+              value={surveyName}
+              onChange={(e) => setSurveyName(e.target.value)}
+              placeholder="Survey Name"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold"
+            >
+              Create Survey
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
