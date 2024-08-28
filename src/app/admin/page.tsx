@@ -1,8 +1,10 @@
 'use server';
-import Graph, { GraphData } from '@/components/graph';
+
+import { Graph } from '@/components';
 import { QuestionsForAdvice } from '@/components/questions-for-advice';
 import { getQuestions, getSurveyAnswers } from '@/lib/actions';
 import { Answer } from '@/lib/types/Answer';
+import { GraphData } from '@/lib/types/GraphData';
 import { processAnswers } from '@/lib/utils/convert-question-data';
 import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
