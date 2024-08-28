@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   LineChart,
   Line,
@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 export type GraphData = {
   month: string;
@@ -17,17 +17,17 @@ export type GraphData = {
 export default function Graph({ data }: { data: GraphData[] }) {
   return (
     <ResponsiveContainer
-      width='100%'
+      width="90%"
       height={400}
-      style={{ display: 'flex', alignItems: 'center' }}
+      className="flex items-center pt-4"
     >
-      <LineChart data={data}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='month' padding={{ left: 10, right: 10 }} />
+      <LineChart data={data} className="ml-[-20px]">
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="month" />
         <YAxis domain={[0, 10]} ticks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
         <Tooltip />
         <Legend />
-        <Line type='monotone' dataKey='Rating' stroke='#82CA9D' />
+        <Line type="monotone" dataKey="Rating" stroke="#82CA9D" />
       </LineChart>
     </ResponsiveContainer>
   );

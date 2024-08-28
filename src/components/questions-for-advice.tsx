@@ -6,9 +6,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Graph from "./graph";
 import { GraphData } from "./graph";
-import { BsChevronRight } from "react-icons/bs";
+import { Spinner } from "./spinner";
+
 type AverageRatings = { [key: number]: number };
 type ShowGraphStates = { [key: number]: boolean };
+
 export const QuestionsForAdvice = ({
   questions,
   graphData,
@@ -45,7 +47,10 @@ export const QuestionsForAdvice = ({
   }
 
   return (
-    <div className="flex flex-col gap-5 items-center py-8">
+    <div className="flex flex-col gap-5 items-center py-12">
+      <h3 className="font-bold text-2xl border-b-2 border-black px-2">
+        Statistics per question
+      </h3>
       {questions.map((q) => (
         <div
           key={q.id}
@@ -56,9 +61,13 @@ export const QuestionsForAdvice = ({
           </h3>
           <div className="flex items-center gap-5 mx-auto">
             <div className="text-gray-700">
-              {averageRatings[q.id!] !== undefined
-                ? `Average rating: ${roundToOneDecimal(averageRatings[q.id!])}`
-                : "Loading..."}
+              {averageRatings[q.id!] !== undefined ? (
+                `Average rating: ${roundToOneDecimal(averageRatings[q.id!])}`
+              ) : (
+                <div className="w-4 h-4">
+                  <Spinner />
+                </div>
+              )}
             </div>
           </div>
           <div className="flex gap-3 mx-auto">
