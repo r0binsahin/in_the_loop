@@ -6,7 +6,7 @@ import useMeasure from 'react-use-measure';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { Question } from '@/lib/types/Question';
 
-import { Slider, WelcomeCard } from '../';
+import { Slider, Spinner, WelcomeCard } from '../';
 import { Answer } from '@/lib/types/Answer';
 import { createAnswer } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useLeavePageConfirm(true);
 
@@ -126,6 +127,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
     try {
       if (answers.length === 0) console.log('no answers');
 
+      setSubmitLoading(true);
+
       const newAnswer = { rating: value, question_id: questions[count].id! };
       const allAnswers = [...answers, newAnswer];
       setValue(5);
@@ -151,7 +154,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
+      <div className=' mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
         <div
           ref={ref}
           className='w-full h-full flex items-center justify-center'
@@ -159,14 +162,14 @@ export const Carousel = ({ questions }: CarouselProps) => {
           <AnimatePresence custom={{ direction, width }}>
             {
               <motion.div
-                key={count}
+                key={isWelcome ? 'welcome' : count}
                 variants={variants}
                 initial='enter'
                 animate='center'
                 exit='exit'
                 transition={spring}
                 custom={{ direction, width }}
-                className='z-10 flex flex-col min-h-[230px] bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10'
+                className='z-10 flex flex-col  justify-around h-[454px] w-[90%]  bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:w-[672px] md:p-10'
               >
                 {isWelcome ? (
                   <WelcomeCard />
@@ -202,9 +205,9 @@ export const Carousel = ({ questions }: CarouselProps) => {
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className='btn rounded-full btn-outline btn-secondary'
+                        className='btn rounded-full btn-outline btn-secondary w-[120px] h-[52px] cursor-pointer'
                       >
-                        Submit
+                        {submitLoading ? <Spinner /> : 'Submit'}
                       </button>
                     ) : (
                       <button
