@@ -11,13 +11,14 @@ import { Spinner } from './spinner';
 type AverageRatings = { [key: number]: number };
 type ShowGraphStates = { [key: number]: boolean };
 
+interface QuestionsForAdviceProps {
+  questions: Question[];
+  graphData: { [key: number]: GraphData[] };
+}
 export const QuestionsForAdvice = ({
   questions,
   graphData,
-}: {
-  questions: Question[];
-  graphData: { [key: number]: GraphData[] };
-}) => {
+}: QuestionsForAdviceProps) => {
   const [averageRatings, setAverageRatings] = useState<AverageRatings>({});
   const [showGraphStates, setShowGraphStates] = useState<ShowGraphStates>({});
   useEffect(() => {
