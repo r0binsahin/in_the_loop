@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { createSurvey, getQuestionsBySurveyId } from '@/lib/actions';
-import { Question } from '@/lib/types/Question';
-import { Survey } from '@/lib/types/Survey';
-import Link from 'next/link';
-import { useState } from 'react';
+import { createSurvey, getQuestionsBySurveyId } from "@/lib/actions";
+import { Question } from "@/lib/types/Question";
+import { Survey } from "@/lib/types/Survey";
+import Link from "next/link";
+import { useState } from "react";
 
 interface RenderSurveysProps {
   surveys: Survey[];
@@ -12,7 +12,7 @@ interface RenderSurveysProps {
 
 export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   const [showForm, setShowForm] = useState(false);
-  const [surveyName, setSurveyName] = useState('');
+  const [surveyName, setSurveyName] = useState("");
   const [questionsMap, setQuestionsMap] = useState<Record<number, Question[]>>(
     {}
   );
@@ -23,7 +23,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
 
     await createSurvey(surveyName);
 
-    setSurveyName('');
+    setSurveyName("");
     setShowForm(false);
   };
 
@@ -47,42 +47,42 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   };
 
   return (
-    <div className='p-4 space-y-6'>
+    <div className="p-4 space-y-6 flex flex-col items-center w-3/4 sm:w-1/2">
       {surveys.map((survey) => (
         <div
           key={survey.id}
-          className='bg-gray-800 text-white p-4 rounded-lg shadow-md'
+          className="bg-primary flex flex-col items-center min-w-full text-white p-4 rounded-lg shadow-md"
         >
           <Link href={`/surveys/${survey.id}`}>
-            <h1 className='text-xl font-semibold'>{survey.survey_name}</h1>
+            <h1 className="text-xl font-semibold">{survey.survey_name}</h1>
           </Link>
           <button
             onClick={() => handleSurvey(survey.id!)}
-            className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition mt-2'
+            className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition mt-2"
           >
             Handle Survey
           </button>
 
           {activeSurveyId === survey.id && (
-            <div>
+            <div className="">
               {questionsMap[survey.id]?.length === 0 ? (
                 <Link
                   href={`/surveys/${survey.id}/add`}
-                  className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                  className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                 >
                   Add questions
                 </Link>
               ) : (
-                <div>
+                <div className="flex gap-2">
                   <Link
                     href={`/surveys/${survey.id}/add`}
-                    className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                   >
                     Add questions
                   </Link>
                   <Link
                     href={`/surveys/${survey.id}/update`}
-                    className='mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                   >
                     update survey
                   </Link>
@@ -95,24 +95,24 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
 
       <button
         onClick={() => setShowForm(!showForm)}
-        className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition'
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
       >
         Add Survey
       </button>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className='space-y-4 mt-4'>
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <input
-            type='text'
+            type="text"
             value={surveyName}
             onChange={(e) => setSurveyName(e.target.value)}
-            placeholder='Survey Name'
+            placeholder="Survey Name"
             required
-            className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
-            type='submit'
-            className='w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition'
+            type="submit"
+            className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
           >
             Create Survey
           </button>
