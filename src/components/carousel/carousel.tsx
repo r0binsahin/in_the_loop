@@ -159,7 +159,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
           <AnimatePresence custom={{ direction, width }}>
             {
               <motion.div
-                key={count}
+                key={isWelcome ? 'welcome' : count}
                 variants={variants}
                 initial='enter'
                 animate='center'
