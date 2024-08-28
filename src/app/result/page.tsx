@@ -1,4 +1,4 @@
-import { Gauge, Graph } from '@/components';
+import { Gauge } from '@/components';
 import { QuestionsForAdvice } from '@/components/questions-for-advice';
 
 import {

@@ -1,10 +1,8 @@
 'use server';
-
-import { Graph } from '@/components';
+import Graph, { GraphData } from '@/components/graph';
 import { QuestionsForAdvice } from '@/components/questions-for-advice';
 import { getQuestions, getSurveyAnswers } from '@/lib/actions';
 import { Answer } from '@/lib/types/Answer';
-import { GraphData } from '@/lib/types/GraphData';
 import { processAnswers } from '@/lib/utils/convert-question-data';
 import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
@@ -15,10 +13,9 @@ export default async function Admin() {
     groupByMonthAndCalculateAverage(surveyAnswers);
   const questionData = processAnswers(surveyAnswers);
   return (
-    <main className='flex justify-center flex-col min-h-screen max-w-[1100px] mx-auto w-full'>
+    <main className='flex justify-center flex-col max-w-[1100px] mx-auto w-full'>
       <div className='admin-wrapper'>
         <SignedOut>
-          <h1> Admin Page</h1>
           <div className='signed-out'>Please sign in!</div>
           <span className='sign-in-button'>
             <SignInButton />
@@ -27,16 +24,12 @@ export default async function Admin() {
       </div>
       <SignedIn>
         <div className='signed-in'>
-          <span className='user-button'>
-            <h1>Admin Page</h1>
-          </span>
-          <div className='render'>
+          <span className='user-button'></span>
+          <div className='w-full '>
             <Graph data={surveyData} />
-            <QuestionsForAdvice
-              questions={questions}
-              graphData={questionData}
-            />
           </div>
+
+          <QuestionsForAdvice questions={questions} graphData={questionData} />
         </div>
       </SignedIn>
     </main>

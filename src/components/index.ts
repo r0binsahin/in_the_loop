@@ -11,4 +11,3 @@ export * from './render-surveys';
 export * from './display-survey';
 export * from './create-question-form';
 export * from './spinner';
-export * from './graph';
