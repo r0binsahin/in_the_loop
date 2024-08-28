@@ -9,7 +9,7 @@ import { Question } from '@/lib/types/Question';
 import { Slider, Spinner, WelcomeCard } from '../';
 import { Answer } from '@/lib/types/Answer';
 import { createAnswer } from '@/lib/actions';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import useLeavePageConfirm from '@/lib/utils/use-leave-confirm';
 
 interface CarouselProps {
@@ -26,6 +26,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
   const [submitLoading, setSubmitLoading] = useState(false);
+
+  const params = useParams();
 
   useLeavePageConfirm(true);
 
@@ -140,7 +142,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
       );
 
       setAnswers([]);
-      router.push('/result');
+      router.push(`/surveys/${params.id}/result`);
     } catch (error) {
       console.error('Error creating answers:', error);
     }
