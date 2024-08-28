@@ -10,22 +10,32 @@ const GaugeComponent = dynamic(() => import('react-gauge-component'), {
 interface GaugeProps {
   value: number;
 }
-//check new branch deployment
+
 export const Gauge = ({ value }: GaugeProps) => {
   return (
-    <div className={`${lexend.variable} flex justify-center`}>
+    <div
+      className={`${lexend.variable} flex justify-center items-center w-full md:w-[60%] mx-auto  border-b-4 border-[#e85d58]`}
+    >
       <GaugeComponent
-        style={{ width: '80%' }}
+        style={{
+          width: '100%',
+        }}
         type='semicircle'
         arc={{
-          colorArray: ['#e85d58', '#5AC17D'],
-          padding: 0.02,
-          subArcs: [{ limit: 20 }, { limit: 40 }, { limit: 60 }],
+          colorArray: ['#e85d58', '#F3B61F', '#399E5A'],
+          padding: 0,
+          subArcs: [
+            {
+              limit: 20,
+            },
+            { limit: 40 },
+            { limit: 60 },
+          ],
         }}
         pointer={{
           type: 'blob',
           color: '#000000',
-          width: 20,
+          width: 25,
           elastic: true,
         }}
         value={value * 10}

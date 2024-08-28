@@ -1,23 +1,23 @@
 export const WelcomeCard = () => {
   return (
-    <div>
-      <div className="h-full flex flex-col uppercase font-space-mono text-[#f5e9dd]">
-        <h3 className="font-light font-100 text-sm leading-[150%] md:text-2xl m-0">
+    <div className='h-full w-full flex flex-col p-[10px] justify-around'>
+      <div className='  uppercase font-space-mono text-[#f5e9dd] justify-between '>
+        <h3 className='font-light font-100 text-[18px] leading-[150%] md:text-2xl '>
           In the loop
         </h3>
-        <h1 className="font-bold text-xl leading-[120%] md:text-3xl m-0">
-          improve your office culture
+        <h1 className='font-bold text-xl leading-[160%] md:text-4xl mt-[20px] text-[#e85d58]'>
+          continious feedback, continious improvement
         </h1>
       </div>
 
-      <div className="mt-0 mb-10 md:mt-9 md:mb-18">
-        <p className="font-light text-base max-w-[706px] leading-[150%] md:text-xl">
+      <div className='md:mt-9 md:mb-18  mt-[10px] w-full'>
+        <p className='  font-light  text-[24px]  leading-[120%] md:text-xl'>
           Use your voice to impact your office culture!
         </p>
       </div>
 
-      <div>
-        <p className="font-semibold text-base md:text-xl m-0">
+      <div className='mt-[10px]'>
+        <p className='font-semibold text-[18px] md:text-xl m-0'>
           Click right to start the survey
         </p>
       </div>

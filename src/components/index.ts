@@ -10,4 +10,6 @@ export * from "./logo";
 export * from "./render-surveys";
 export * from "./display-survey";
 export * from "./create-question-form";
+export * from "./spinner";
+export * from "./salt";
 export * from "./question-loading-skeleton";
