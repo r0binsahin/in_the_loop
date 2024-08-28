@@ -78,7 +78,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
                   <div className='flex gap-4'>
                     <li>
                       <Link
-                        href={`/surveys/${survey.id}/result`}
+                        href={`/admin/surveys/${survey.id}/result`}
                         className='btn btn-primary text-secondary w-[120px]'
                       >
                         See results
