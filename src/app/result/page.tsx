@@ -1,5 +1,6 @@
 import { Gauge } from '@/components';
-import { QuestionsForAdvice } from '@/components/questions-for-advice';
+
+import { QuestionsWithGraph } from '@/components/questions-with-graph';
 
 import {
   getQuestions,
@@ -31,7 +32,9 @@ export default async function Result() {
   return (
     <main className=' w-full flex flex-col justify-center items-center'>
       <Gauge value={averageRatingForSurvey1} />
-      <QuestionsForAdvice questions={questions} graphData={questionData} />
+      <QuestionsWithGraph questions={questions} graphData={questionData} />
+
+      {/*       <QuestionsForAdvice questions={questions} graphData={questionData} /> */}
     </main>
   );
 }
