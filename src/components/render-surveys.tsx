@@ -75,43 +75,25 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
             {activeSurveyId === survey.id && (
               <div className='flex gap-4 justify-center w-full'>
                 <ul className=''>
-                  {questionsMap[survey.id]?.length === 0 ? (
+                  <div className='flex gap-4'>
                     <li>
                       <Link
-                        href={`/surveys/${survey.id}/add`}
-                        className='btn btn-primary text-secondary'
+                        href={`/surveys/${survey.id}/result`}
+                        className='btn btn-primary text-secondary w-[120px]'
                       >
-                        Add questions
+                        See results
                       </Link>
                     </li>
-                  ) : (
-                    <div className='flex gap-4'>
-                      <li>
-                        <Link
-                          href={`/surveys/${survey.id}/result`}
-                          className='btn btn-primary text-secondary'
-                        >
-                          See results
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/surveys/${survey.id}/add`}
-                          className='btn btn-primary text-secondary'
-                        >
-                          Add questions
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/surveys/${survey.id}/update`}
-                          className='btn btn-primary text-secondary'
-                        >
-                          Update survey
-                        </Link>
-                      </li>
-                    </div>
-                  )}
+
+                    <li>
+                      <Link
+                        href={`/surveys/${survey.id}/update`}
+                        className='btn btn-primary text-secondary w-[120px]'
+                      >
+                        Edit
+                      </Link>
+                    </li>
+                  </div>
                 </ul>
               </div>
             )}
