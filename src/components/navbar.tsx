@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   SignedIn,
@@ -6,24 +6,29 @@ import {
   SignIn,
   SignInButton,
   UserButton,
-} from "@clerk/nextjs";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CgProfile } from "react-icons/cg";
-import { Logo, Salt } from "../components";
+} from '@clerk/nextjs';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { CgProfile } from 'react-icons/cg';
+import { Logo, Salt } from '../components';
+import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
   const pathname = usePathname();
-  const isAdminPage = pathname === "/admin";
+  const [isAdminPage, setIsAdminPage] = useState(false);
+
+  useEffect(() => {
+    setIsAdminPage(pathname === '/admin');
+  }, [pathname]);
   return (
-    <div className="navbar bg-secondary max-w-[1100px] w-10/12 px-0">
-      <div className="flex justify-between w-full">
+    <div className='navbar bg-secondary max-w-[1100px] w-10/12 px-0'>
+      <div className='flex justify-between w-full'>
         <Salt />
-        <Link href="/">
+        <Link href='/'>
           <Logo />
         </Link>
         {isAdminPage ? (
-          <div className="x">
+          <div className='x'>
             <SignedOut>
               <SignInButton>
                 <span>
@@ -36,7 +41,7 @@ export const Navbar = () => {
             </SignedIn>
           </div>
         ) : (
-          <Link href="/admin" className="admin-page-link">
+          <Link href='/admin' className='admin-page-link'>
             <CgProfile size={20} />
           </Link>
         )}
