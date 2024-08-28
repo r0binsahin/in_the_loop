@@ -6,7 +6,7 @@ import useMeasure from 'react-use-measure';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { Question } from '@/lib/types/Question';
 
-import { Slider, WelcomeCard } from '../';
+import { Slider, Spinner, WelcomeCard } from '../';
 import { Answer } from '@/lib/types/Answer';
 import { createAnswer } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useLeavePageConfirm(true);
 
@@ -126,6 +127,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
     try {
       if (answers.length === 0) console.log('no answers');
 
+      setSubmitLoading(true);
+
       const newAnswer = { rating: value, question_id: questions[count].id! };
       const allAnswers = [...answers, newAnswer];
       setValue(5);
@@ -202,9 +205,9 @@ export const Carousel = ({ questions }: CarouselProps) => {
                     {count === questions.length - 1 ? (
                       <button
                         onClick={submitAnswers}
-                        className='btn rounded-full btn-outline btn-secondary'
+                        className='btn rounded-full btn-outline btn-secondary w-[120px] h-[52px] cursor-pointer'
                       >
-                        Submit
+                        {submitLoading ? <Spinner /> : 'Submit'}
                       </button>
                     ) : (
                       <button
