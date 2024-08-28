@@ -7,7 +7,11 @@ import { Answer } from '@/lib/types/Answer';
 import { processAnswers } from '@/lib/utils/convert-question-data';
 import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
+
 export default async function Admin() {
+  auth().protect();
+
   const questions = (await getQuestions()) || [];
   const surveys = (await getAllSurveys()) || [];
   const surveyAnswers: Answer[] = (await getSurveyAnswers(1)) || [];
