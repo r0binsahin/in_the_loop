@@ -151,7 +151,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className='mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
+      <div className=' mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
         <div
           ref={ref}
           className='w-full h-full flex items-center justify-center'
@@ -166,7 +166,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 exit='exit'
                 transition={spring}
                 custom={{ direction, width }}
-                className='z-10 flex flex-col min-h-[230px] bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:max-w-2xl md:min-h-[312px] md:p-10'
+                className='z-10 flex flex-col  justify-around h-[454px] w-[90%]  bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:w-[672px] md:p-10'
               >
                 {isWelcome ? (
                   <WelcomeCard />
