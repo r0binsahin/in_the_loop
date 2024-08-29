@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useParams, usePathname } from "next/navigation";
 import { createQuestion, getQuestionsBySurveyId } from "@/lib/actions";
 import { Question } from "@/lib/types/Question";
+import { Spinner } from "./spinner";
 
 export const CreateQuestionForm = () => {
   const [questionText, setQuestionText] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
   const pathName = usePathname();
@@ -19,7 +20,7 @@ export const CreateQuestionForm = () => {
     e.preventDefault();
     if (!questionText.trim()) return;
 
-    setLoading(true);
+    setSubmitLoading(true);
     setError(null);
 
     const newQuestion: Question = {
@@ -36,7 +37,7 @@ export const CreateQuestionForm = () => {
       setError("Failed to create question. Please try again.");
       console.error(err);
     } finally {
-      setLoading(false);
+      setSubmitLoading(false);
     }
   };
 
@@ -69,12 +70,8 @@ export const CreateQuestionForm = () => {
             required
             className="textarea textarea-primary bg-secondary w-full"
           />
-          <button
-            type="submit"
-            className="btn btn-primary text-secondary"
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Submit Question"}
+          <button type="submit" className="btn btn-primary text-secondary">
+            {submitLoading ? <Spinner /> : "Submit"}
           </button>
         </form>
       </div>

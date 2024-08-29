@@ -5,11 +5,13 @@ import { Question } from "@/lib/types/Question";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import QuestionLoadingSkeleton from "./question-loading-skeleton";
+import { Spinner } from "./spinner";
 
 export const DeleteQuestion = () => {
   const params = useParams();
 
   const [questions, setQuestions] = useState<Question[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchQuestions = async () => {
     try {
@@ -26,10 +28,13 @@ export const DeleteQuestion = () => {
   }, []);
 
   const deleteQuestionById = async (id: number) => {
+    setIsLoading(true);
     try {
       await deleteQuestion(id);
     } catch (error) {
       console.error(error, "Could not delete question!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -50,7 +55,7 @@ export const DeleteQuestion = () => {
               onClick={() => handleDelete(que.id!)}
               className="btn btn-accent p-1 text-secondary sm:px-8"
             >
-              Delete
+              {isLoading ? <Spinner /> : "Delete"}
             </button>
           </div>
         ))
