@@ -101,8 +101,9 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
 
                     <li>
                       <Link
-                        href={`/surveys/${survey.id}/update`}
-                        className="btn btn-primary text-secondary w-[120px]"
+
+                        href={`/admin/surveys/${survey.id}/update`}
+
                       >
                         Edit
                       </Link>
