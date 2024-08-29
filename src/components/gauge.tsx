@@ -34,7 +34,7 @@ export const Gauge = ({ value }: GaugeProps) => {
         }}
         pointer={{
           type: 'blob',
-          color: '#000000',
+          color: '#e85d58',
           width: 25,
           elastic: true,
         }}
