@@ -138,9 +138,13 @@ export const queryGetQuestionsBySurveyId = async (surveyId: number) => {
 
 export const queryDeleteQuestion = async (id: number) => {
   try {
-    await db.delete(questions).where(eq(questions.id, id));
+    await db.transaction(async (tx) => {
+      await tx.delete(answers).where(eq(answers.question_id, id));
+      await tx.delete(questions).where(eq(questions.id, id));
+    });
   } catch (error) {
-    console.error(error);
+    console.error('Error deleting question and answers:', error);
+    throw error;
   }
 };
 
