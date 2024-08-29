@@ -15,3 +15,4 @@ export * from './salt';
 export * from './question-loading-skeleton';
 export * from './display-survey-result';
 export * from './display-advice/display-advice';
+export * from './result-skeleton';

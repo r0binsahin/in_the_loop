@@ -1,7 +1,7 @@
 'use client';
 
 import { Question } from '@/lib/types/Question';
-import { Gauge } from '../components';
+import { Gauge, ResultSkeleton } from '../components';
 import { useEffect, useState } from 'react';
 import {
   getQuestionsBySurveyId,
@@ -51,14 +51,20 @@ export const DisplaySurveyResult = () => {
 
   return (
     <main className='max-w-[1100px] w-10/12 flex flex-col justify-center items-center'>
-      <Gauge value={averageRatingForSurvey} />
-
-      <div className='w-full flex flex-col  justify-center items-center'>
-        <h3 className='font-bold text-2xl px-2 pb-[40px]'>Results over time</h3>
-        <Graph data={surveyData} />
-      </div>
-
-      <QuestionsForAdvice questions={questions} graphData={questionData} />
+      {averageRatingForSurvey ? (
+        <div className='w-full'>
+          <Gauge value={averageRatingForSurvey} />
+          <div className='w-full flex flex-col  justify-center items-center'>
+            <h3 className='font-bold text-2xl px-2 pb-[40px]'>
+              Results over time
+            </h3>
+            <Graph data={surveyData} />
+          </div>
+          <QuestionsForAdvice questions={questions} graphData={questionData} />{' '}
+        </div>
+      ) : (
+        <ResultSkeleton />
+      )}
     </main>
   );
 };
