@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { createSurvey, getQuestionsBySurveyId } from "@/lib/actions";
-import { Question } from "@/lib/types/Question";
-import { Survey } from "@/lib/types/Survey";
-import Link from "next/link";
-import { useState } from "react";
-import { FaPencilAlt } from "react-icons/fa";
-import { Spinner } from "./spinner";
+import { createSurvey, getQuestionsBySurveyId } from '@/lib/actions';
+import { Question } from '@/lib/types/Question';
+import { Survey } from '@/lib/types/Survey';
+import Link from 'next/link';
+import { useState } from 'react';
+import { FaPencilAlt } from 'react-icons/fa';
+import { Spinner } from './spinner';
 
 interface RenderSurveysProps {
   surveys: Survey[];
@@ -14,7 +14,7 @@ interface RenderSurveysProps {
 
 export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   const [showForm, setShowForm] = useState(false);
-  const [surveyName, setSurveyName] = useState("");
+  const [surveyName, setSurveyName] = useState('');
   const [questionsMap, setQuestionsMap] = useState<Record<number, Question[]>>(
     {}
   );
@@ -26,7 +26,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
     setIsLoading(true);
     try {
       await createSurvey(surveyName);
-      setSurveyName("");
+      setSurveyName('');
       setShowForm(false);
     } catch (error) {
       console.log(error);
@@ -66,34 +66,34 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
   };
 
   return (
-    <div className="h-full pt-6 pb-12 flex flex-col items-center w-full">
-      <h2 className="text-center text-3xl font-bold mb-8">All Surveys</h2>
-      <div className="space-y-5 flex flex-col w-3/4 sm:w-1/2">
+    <div className='h-full pt-6 pb-12 flex flex-col items-center w-full'>
+      <h2 className='text-center text-3xl font-bold mb-8'>All Surveys</h2>
+      <div className='space-y-5 flex flex-col w-3/4 sm:w-1/2'>
         {surveys.map((survey) => (
           <div
             key={survey.id}
-            className="flex flex-col gap-4 border-b border-black pb-4"
+            className='flex flex-col gap-4 border-b border-black pb-4'
           >
-            <div className="flex items-center justify-between">
+            <div className='flex items-center justify-between'>
               <Link href={`/surveys/${survey.id}`}>
-                <h1 className="text-xl font-semibold">{survey.survey_name}</h1>
+                <h1 className='text-xl font-semibold'>{survey.survey_name}</h1>
               </Link>
               <button
                 onClick={() => handleSurvey(survey.id!)}
-                className="rounded-lg opacity-60 hover:opacity-100 focus:opacity-100 transition mt-2"
+                className='rounded-lg opacity-60 hover:opacity-100 focus:opacity-100 transition mt-2'
               >
-                {isLoading ? <Spinner /> : <FaPencilAlt />}
+                <FaPencilAlt />
               </button>
             </div>
 
             {activeSurveyId === survey.id && (
-              <div className="flex gap-4 justify-center w-full">
-                <ul className="">
-                  <div className="flex gap-4">
+              <div className='flex gap-4 justify-center w-full'>
+                <ul className=''>
+                  <div className='flex gap-4'>
                     <li>
                       <Link
                         href={`/admin/surveys/${survey.id}/result`}
-                        className="btn btn-primary text-secondary w-[120px]"
+                        className='btn btn-primary text-secondary w-[120px]'
                       >
                         See results
                       </Link>
@@ -101,9 +101,8 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
 
                     <li>
                       <Link
-
+                        className='btn btn-primary text-secondary w-[120px]'
                         href={`/admin/surveys/${survey.id}/update`}
-
                       >
                         Edit
                       </Link>
@@ -116,7 +115,7 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
         ))}
         <button
           onClick={() => setShowForm(!showForm)}
-          className="w-1/2 btn btn-primary text-secondary mx-auto"
+          className='w-1/2 btn btn-primary text-secondary mx-auto'
         >
           Add Survey
         </button>
@@ -124,21 +123,21 @@ export const RenderSurveys = ({ surveys }: RenderSurveysProps) => {
         {showForm && (
           <form
             onSubmit={handleSubmit}
-            className="space-y-2 mt-4 flex flex-col items-center"
+            className='space-y-2 mt-4 flex flex-col items-center'
           >
             <input
-              type="text"
+              type='text'
               value={surveyName}
               onChange={(e) => setSurveyName(e.target.value)}
-              placeholder="Survey Name"
+              placeholder='Survey Name'
               required
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className='w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
             />
             <button
-              type="submit"
-              className="w-1/2 btn btn-primary text-secondary"
+              type='submit'
+              className='w-1/2 btn btn-primary text-secondary'
             >
-              {isLoading ? <Spinner /> : "Create Survey"}
+              {isLoading ? <Spinner /> : 'Create Survey'}
             </button>
           </form>
         )}
