@@ -1,3 +1,5 @@
+'use client';
+
 export const ResultSkeleton = () => {
   return (
     <div className='min-h-screen bg-[#f5e9dd] w-full max-w-[1100px] mx-auto mt-8'>

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import {
   getQuestionsBySurveyId,
   getSurveyAnswers,
+  getSurveyById,
   getSurveyRatings,
 } from '@/lib/actions';
 import { useParams } from 'next/navigation';
@@ -16,12 +17,15 @@ import { Answer } from '@/lib/types/Answer';
 import Graph from './graph';
 import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
 import { GraphData } from '@/lib/types/GraphData';
+import { queryGetSurveyById } from '@/server/queries';
 
 export const DisplaySurveyResult = () => {
   const params = useParams();
   const [surveyRatings, setSurveyRatings] = useState<number[]>([]);
   const [surveyAnswers, setSurveyAnswers] = useState<Answer[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
+
+  const [surveyName, setSurveyName] = useState<string>('');
 
   const averageRatingForSurvey = calculateAverageRatingPerSurvey(surveyRatings);
   const questionData = processAnswers(surveyAnswers);
@@ -37,6 +41,9 @@ export const DisplaySurveyResult = () => {
       const fetchedSurveyAnswers = (await getSurveyAnswers(+params.id)) || [];
 
       setSurveyAnswers(fetchedSurveyAnswers);
+
+      const surveyDetails = await getSurveyById(+params.id);
+      setSurveyName(surveyDetails!.survey_name);
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +59,10 @@ export const DisplaySurveyResult = () => {
   return (
     <main className='max-w-[1100px] w-10/12 flex flex-col justify-center items-center'>
       {averageRatingForSurvey ? (
-        <div className='w-full'>
+        <div className='w-full flex flex-col items-center'>
+          <h3 className='font-bold text-3xl px-2 pb-[40px] pt-[40px]'>
+            {surveyName}
+          </h3>
           <Gauge value={averageRatingForSurvey} />
           <div className='w-full flex flex-col  justify-center items-center'>
             <h3 className='font-bold text-2xl px-2 pb-[40px]'>

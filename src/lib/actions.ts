@@ -10,6 +10,7 @@ import {
   queryGetQuestionsBySurveyId,
   queryGetRatingsByQuestionId,
   queryGetSurveyAnswersBySurveyId,
+  queryGetSurveyById,
   queryGetSurveyRatingsBySurveyId,
 } from '@/server/queries';
 import { Answer } from './types/Answer';
@@ -113,6 +114,15 @@ export const getQuestionsBySurveyId = async (surveyId: number) => {
 export const deleteQuestion = async (id: number) => {
   try {
     await queryDeleteQuestion(id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getSurveyById = async (id: number) => {
+  try {
+    const res = await queryGetSurveyById(id);
+    return res;
   } catch (error) {
     console.error(error);
   }

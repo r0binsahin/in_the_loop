@@ -24,7 +24,6 @@ export default async function Admin() {
       <SignedIn>
         <div className='signed-in'>
           <span className='user-button'></span>
-
           <RenderSurveys surveys={surveys} />
         </div>
       </SignedIn>
