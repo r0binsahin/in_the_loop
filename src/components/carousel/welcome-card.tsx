@@ -11,7 +11,7 @@ export const WelcomeCard = ({ surveyName }: WelcomeCardProps) => {
         </h3>
         <span className='capitalize'>{surveyName}</span>
         <h1 className='font-bold text-xl leading-[160%] md:text-4xl mt-[20px] text-[#e85d58]'>
-          continious feedback, continious improvement
+          continuous feedback, continuous improvement
         </h1>
       </div>
 
