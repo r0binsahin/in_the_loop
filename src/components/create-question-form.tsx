@@ -58,7 +58,7 @@ export const CreateQuestionForm = () => {
 
   return (
     <>
-      <div className='w-10/12'>
+      <div className='w-10/12 max-w-[1100px]'>
         {error && <p className='text-red-500'>{error}</p>}
         <form
           onSubmit={handleSubmit}

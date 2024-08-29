@@ -45,7 +45,7 @@ export const DeleteQuestion = ({
         questions.map((que) => (
           <div
             key={que.id}
-            className='w-10/12 mb-8 pb-4 border-b border-primary flex justify-between'
+            className='w-10/12 max-w-[1100px] mb-8 pb-4 border-b border-primary flex justify-between'
           >
             <h3 className='pr-4'>{que.text}</h3>
             <button

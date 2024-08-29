@@ -31,13 +31,8 @@ export default async function Admin() {
       <SignedIn>
         <div className='signed-in'>
           <span className='user-button'></span>
-          {/*       <div className='w-full flex justify-center'>
-            <Graph data={surveyData} />
-          </div> */}
 
           <RenderSurveys surveys={surveys} />
-
-          {/*    <QuestionsForAdvice questions={questions} graphData={questionData} /> */}
         </div>
       </SignedIn>
     </main>

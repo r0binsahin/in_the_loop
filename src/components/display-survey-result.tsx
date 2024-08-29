@@ -1,19 +1,22 @@
-"use client";
+'use client';
 
-import { Question } from "@/lib/types/Question";
-import { Carousel, Gauge } from "../components";
-import { useEffect, useState } from "react";
+import { Question } from '@/lib/types/Question';
+import { Carousel, Gauge } from '../components';
+import { useEffect, useState } from 'react';
 import {
   getQuestions,
   getQuestionsBySurveyId,
   getSurveyAnswers,
   getSurveyRatings,
-} from "@/lib/actions";
-import { useParams } from "next/navigation";
-import { QuestionsForAdvice } from "./questions-for-advice";
-import { calculateAverageRatingPerSurvey } from "@/lib/utils/calculate-average-rating-per-survey";
-import { processAnswers } from "@/lib/utils/convert-question-data";
-import { Answer } from "@/lib/types/Answer";
+} from '@/lib/actions';
+import { useParams } from 'next/navigation';
+import { QuestionsForAdvice } from './questions-for-advice';
+import { calculateAverageRatingPerSurvey } from '@/lib/utils/calculate-average-rating-per-survey';
+import { processAnswers } from '@/lib/utils/convert-question-data';
+import { Answer } from '@/lib/types/Answer';
+import Graph from './graph';
+import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
+import { GraphData } from '@/lib/types/GraphData';
 
 export const DisplaySurveyResult = () => {
   const params = useParams();
@@ -44,9 +47,18 @@ export const DisplaySurveyResult = () => {
     handleData();
   }, []);
 
+  const surveyData: GraphData[] =
+    groupByMonthAndCalculateAverage(surveyAnswers);
+
   return (
-    <main className="max-w-[1100px] w-10/12 flex flex-col justify-center items-center">
+    <main className='max-w-[1100px] w-10/12 flex flex-col justify-center items-center'>
       <Gauge value={averageRatingForSurvey} />
+
+      <div className='w-full flex flex-col  justify-center items-center'>
+        <h3 className='font-bold text-2xl px-2 pb-[40px]'>Results over time</h3>
+        <Graph data={surveyData} />
+      </div>
+
       <QuestionsForAdvice questions={questions} graphData={questionData} />
     </main>
   );
