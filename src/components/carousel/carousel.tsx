@@ -204,7 +204,8 @@ export const Carousel = ({ questions }: CarouselProps) => {
                   )}
 
                   <div className='mt-1 items-center justify-end z-[1000]'>
-                    {count === questions.length - 1 ? (
+                    {(!isWelcome && questions.length === 1) ||
+                    (count === questions.length - 1 && !isWelcome) ? (
                       <button
                         onClick={submitAnswers}
                         className='btn rounded-full btn-outline btn-secondary w-[120px] h-[52px] cursor-pointer'
