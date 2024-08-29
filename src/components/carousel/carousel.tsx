@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMeasure from 'react-use-measure';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { Question } from '@/lib/types/Question';
 
 import { Slider, Spinner, WelcomeCard } from '../';
 import { Answer } from '@/lib/types/Answer';
-import { createAnswer } from '@/lib/actions';
+import { createAnswer, getSurveyById } from '@/lib/actions';
 import { useParams, useRouter } from 'next/navigation';
 import useLeavePageConfirm from '@/lib/utils/use-leave-confirm';
 
@@ -26,6 +26,7 @@ export const Carousel = ({ questions }: CarouselProps) => {
   const [isWelcome, setIsWelcome] = useState(true);
   const router = useRouter();
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [surveyName, setSurveyName] = useState<string>('');
 
   const params = useParams();
 
@@ -146,6 +147,19 @@ export const Carousel = ({ questions }: CarouselProps) => {
     }
   };
 
+  const fetchSurveyName = async () => {
+    try {
+      const surveyDetails = await getSurveyById(+params.id);
+      if (!surveyDetails) setSurveyName('Survey');
+      setSurveyName(surveyDetails!.survey_name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSurveyName();
+  }, []);
   return (
     <motion.div
       animate={{}}
@@ -172,11 +186,11 @@ export const Carousel = ({ questions }: CarouselProps) => {
                 className='z-10 flex flex-col  justify-around h-[454px] w-[90%]  bg-[#494949] text-[#f5e9dd] shadow-lg rounded-[35px] m-5 p-6 absolute md:m-10 md:w-[672px] md:p-10'
               >
                 {isWelcome ? (
-                  <WelcomeCard />
+                  <WelcomeCard surveyName={surveyName} />
                 ) : (
                   <div>
                     <p className='border-b-2 border-[#f5e9dd] py-2'>
-                      Question {count + 1}
+                      Question {count + 1} | {surveyName}
                     </p>
                     <h1 className='font-bold text-xl leading-[140%] mt-14 md:text-3xl'>
                       {questions[count]
