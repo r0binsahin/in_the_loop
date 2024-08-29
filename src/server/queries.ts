@@ -108,7 +108,6 @@ export const queryCreateSurvey = async (surveyName: string) => {
     await db
       .insert(surveys)
       .values({ survey_name: surveyName, user_amount: 0 });
-    console.log('survey name:', surveyName);
   } catch (error) {
     console.error(error);
   }

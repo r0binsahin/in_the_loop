@@ -17,7 +17,6 @@ import { Answer } from '@/lib/types/Answer';
 import Graph from './graph';
 import { groupByMonthAndCalculateAverage } from '@/lib/utils/filterDataByMonth';
 import { GraphData } from '@/lib/types/GraphData';
-import { queryGetSurveyById } from '@/server/queries';
 
 export const DisplaySurveyResult = () => {
   const params = useParams();

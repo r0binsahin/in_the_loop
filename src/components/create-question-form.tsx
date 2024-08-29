@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, usePathname } from 'next/navigation';
-import { createQuestion, getQuestionsBySurveyId } from '@/lib/actions';
+import {
+  createQuestion,
+  getQuestionsBySurveyId,
+  getSurveyById,
+} from '@/lib/actions';
 import { Question } from '@/lib/types/Question';
 import { Spinner } from './spinner';
 import { DeleteQuestion } from './delete-question';
+import Link from 'next/link';
 
 export const CreateQuestionForm = () => {
   const [questionText, setQuestionText] = useState('');
@@ -14,6 +19,7 @@ export const CreateQuestionForm = () => {
   const params = useParams();
   const pathName = usePathname();
   const url = `/surveys/${params.id}/add`;
+  const [surveyName, setSurveyName] = useState<string>('');
 
   const [questions, setQuestions] = useState<Question[] | []>([]);
 
@@ -52,12 +58,24 @@ export const CreateQuestionForm = () => {
     }
   };
 
+  const fetchSurveyName = async () => {
+    const surveyDetails = await getSurveyById(+params.id);
+    setSurveyName(surveyDetails!.survey_name);
+  };
+
   useEffect(() => {
     fetchQuestions();
+    fetchSurveyName();
   }, []);
 
   return (
     <>
+      <Link
+        href={`/surveys/${params.id}`}
+        className='font-bold text-3xl px-2 pb-[40px] pt-[40px]'
+      >
+        {surveyName}
+      </Link>
       <div className='w-10/12 max-w-[1100px]'>
         {error && <p className='text-red-500'>{error}</p>}
         <form

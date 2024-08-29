@@ -19,7 +19,6 @@ export const giveAdvice = async (prompt: string) => {
       },
     ],
   });
-  console.log('AI answer', completion.choices[0].message.content);
 
   return completion.choices[0].message;
 };

@@ -127,8 +127,6 @@ export const Carousel = ({ questions }: CarouselProps) => {
 
   const submitAnswers = async () => {
     try {
-      if (answers.length === 0) console.log('no answers');
-
       setSubmitLoading(true);
 
       const newAnswer = { rating: value, question_id: questions[count].id! };
