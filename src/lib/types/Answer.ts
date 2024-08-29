@@ -1,6 +1,6 @@
 export type Answer = {
-  id?: number;
-  rating: number;
-  question_id: number | null;
-  createdAt?: Date;
-};
+  id?: number
+  rating: number
+  question_id: number | null
+  createdAt?: Date
+}
