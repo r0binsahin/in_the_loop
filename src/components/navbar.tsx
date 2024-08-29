@@ -32,7 +32,7 @@ export const Navbar = () => {
             <SignedOut>
               <SignInButton>
                 <span>
-                  <CgProfile size={20} />
+                  <CgProfile size={32} />
                 </span>
               </SignInButton>
             </SignedOut>
@@ -42,7 +42,7 @@ export const Navbar = () => {
           </div>
         ) : (
           <Link href='/admin' className='admin-page-link'>
-            <CgProfile size={20} />
+            <CgProfile size={32} />
           </Link>
         )}
       </div>
