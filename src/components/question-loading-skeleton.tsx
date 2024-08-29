@@ -2,7 +2,7 @@ import React from "react";
 
 export const QuestionLoadingSkeleton = () => {
   return (
-    <div className="bg-[#f5e9dd] w-10/12">
+    <div className="bg-[#f5e9dd] w-10/12 max-w-[1100px]">
       <div>
         {[1, 2, 3, 4, 5].map((item) => (
           <div

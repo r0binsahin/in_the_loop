@@ -19,7 +19,7 @@ export default function Graph({ data }: { data: GraphData[] }) {
     <ResponsiveContainer
       width="90%"
       height={400}
-      className="flex items-center pt-4"
+      className="flex items-center p-auto mx-auto"
     >
       <LineChart data={data} className="ml-[-20px]">
         <CartesianGrid strokeDasharray="3 3" />

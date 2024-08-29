@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { Question } from '@/lib/types/Question';
-import { Carousel, Gauge } from '../components';
-import { useEffect, useState } from 'react';
+import { Question } from "@/lib/types/Question";
+import { Carousel, Gauge } from "../components";
+import { useEffect, useState } from "react";
 import {
   getQuestions,
   getQuestionsBySurveyId,
   getSurveyAnswers,
   getSurveyRatings,
-} from '@/lib/actions';
-import { useParams } from 'next/navigation';
-import { QuestionsForAdvice } from './questions-for-advice';
-import { calculateAverageRatingPerSurvey } from '@/lib/utils/calculate-average-rating-per-survey';
-import { processAnswers } from '@/lib/utils/convert-question-data';
-import { Answer } from '@/lib/types/Answer';
+} from "@/lib/actions";
+import { useParams } from "next/navigation";
+import { QuestionsForAdvice } from "./questions-for-advice";
+import { calculateAverageRatingPerSurvey } from "@/lib/utils/calculate-average-rating-per-survey";
+import { processAnswers } from "@/lib/utils/convert-question-data";
+import { Answer } from "@/lib/types/Answer";
 
 export const DisplaySurveyResult = () => {
   const params = useParams();
@@ -45,7 +45,7 @@ export const DisplaySurveyResult = () => {
   }, []);
 
   return (
-    <main className=' w-full flex flex-col justify-center items-center'>
+    <main className="max-w-[1100px] w-10/12 flex flex-col justify-center items-center">
       <Gauge value={averageRatingForSurvey} />
       <QuestionsForAdvice questions={questions} graphData={questionData} />
     </main>

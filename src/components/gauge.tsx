@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { lexend } from '@/app/ui';
-import dynamic from 'next/dynamic';
+import { lexend } from "@/app/ui";
+import dynamic from "next/dynamic";
 
-const GaugeComponent = dynamic(() => import('react-gauge-component'), {
+const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
 });
 
@@ -14,15 +14,15 @@ interface GaugeProps {
 export const Gauge = ({ value }: GaugeProps) => {
   return (
     <div
-      className={`${lexend.variable} flex justify-center items-center w-full md:w-[50%] mx-auto  border-b-4 border-[#e85d58]`}
+      className={`${lexend.variable} flex justify-center items-center w-10/12 md:w-[50%] mx-auto py-10`}
     >
       <GaugeComponent
         style={{
-          width: '100%',
+          width: "100%",
         }}
-        type='semicircle'
+        type="semicircle"
         arc={{
-          colorArray: ['#e85d58', '#F3B61F', '#399E5A'],
+          colorArray: ["#e85d58", "#F3B61F", "#399E5A"],
           padding: 0,
           subArcs: [
             {
@@ -33,8 +33,8 @@ export const Gauge = ({ value }: GaugeProps) => {
           ],
         }}
         pointer={{
-          type: 'blob',
-          color: '#e85d58',
+          type: "blob",
+          color: "#e85d58",
           width: 25,
           elastic: true,
         }}
@@ -42,13 +42,13 @@ export const Gauge = ({ value }: GaugeProps) => {
         labels={{
           valueLabel: {
             style: {
-              fontSize: '40px',
-              fill: '#4A5568',
-              fontFamily: 'var(--font-lexend)',
-              fontWeight: '700',
-              textShadow: 'none',
+              fontSize: "40px",
+              fill: "#4A5568",
+              fontFamily: "var(--font-lexend)",
+              fontWeight: "700",
+              textShadow: "none",
             },
-            formatTextValue: (value: number) => value.toFixed(1) + '%',
+            formatTextValue: (value: number) => value.toFixed(1) + "%",
           },
         }}
       />
