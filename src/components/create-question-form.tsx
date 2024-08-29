@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useParams, usePathname } from "next/navigation";
-import { createQuestion, getQuestionsBySurveyId } from "@/lib/actions";
-import { Question } from "@/lib/types/Question";
-import { Spinner } from "./spinner";
+import { useEffect, useState } from 'react';
+import { useParams, usePathname } from 'next/navigation';
+import { createQuestion, getQuestionsBySurveyId } from '@/lib/actions';
+import { Question } from '@/lib/types/Question';
+import { Spinner } from './spinner';
+import { DeleteQuestion } from './delete-question';
 
 export const CreateQuestionForm = () => {
-  const [questionText, setQuestionText] = useState("");
+  const [questionText, setQuestionText] = useState('');
   const [submitLoading, setSubmitLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
@@ -31,10 +32,10 @@ export const CreateQuestionForm = () => {
 
     try {
       await createQuestion(newQuestion);
-      setQuestionText("");
+      setQuestionText('');
       fetchQuestions();
     } catch (err) {
-      setError("Failed to create question. Please try again.");
+      setError('Failed to create question. Please try again.');
       console.error(err);
     } finally {
       setSubmitLoading(false);
@@ -57,21 +58,21 @@ export const CreateQuestionForm = () => {
 
   return (
     <>
-      <div className="w-10/12 max-w-[1100px]">
-        {error && <p className="text-red-500">{error}</p>}
+      <div className='w-10/12'>
+        {error && <p className='text-red-500'>{error}</p>}
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 flex flex-col justify-center my-8"
+          className='space-y-4 flex flex-col justify-center my-8'
         >
           <textarea
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
-            placeholder="Add your question here..."
+            placeholder='Add your question here...'
             required
-            className="textarea textarea-primary bg-secondary w-full"
+            className='textarea textarea-primary bg-secondary w-full'
           />
-          <button type="submit" className="btn btn-primary text-secondary">
-            {submitLoading ? <Spinner /> : "Submit"}
+          <button type='submit' className='btn btn-primary text-secondary'>
+            {submitLoading ? <Spinner /> : 'Submit'}
           </button>
         </form>
       </div>
@@ -84,6 +85,7 @@ export const CreateQuestionForm = () => {
           </div>
         )}
       </div>
+      <DeleteQuestion questions={questions} fetchQuestions={fetchQuestions} />
     </>
   );
 };
