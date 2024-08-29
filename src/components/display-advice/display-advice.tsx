@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import './style.css';
+import "./style.css";
 
 import {
   generateAISupport,
   getQuestions,
   getRatingsByQuestionId,
-} from '@/lib/actions';
-import { calculateAverageRatingPerQuestion } from '@/lib/utils/calculate-average-rating-per-question';
-import { useParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { LoadingSkeleton } from '../loading-skeleton';
+} from "@/lib/actions";
+import { calculateAverageRatingPerQuestion } from "@/lib/utils/calculate-average-rating-per-question";
+import { useParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { LoadingSkeleton } from "../loading-skeleton";
 
 export const DisplayAdvice = () => {
   const params = useParams<{ id: string }>();
@@ -45,7 +45,7 @@ export const DisplayAdvice = () => {
   }, [params.id]);
   return (
     <>
-      <main className='w-full px-24'>
+      <main className="w-10/12 max-w-[1100px]">
         {advice ? (
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{advice}</ReactMarkdown>
         ) : (
