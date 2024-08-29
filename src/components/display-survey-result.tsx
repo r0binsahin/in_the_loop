@@ -1,10 +1,9 @@
 'use client';
 
 import { Question } from '@/lib/types/Question';
-import { Carousel, Gauge } from '../components';
+import { Gauge } from '../components';
 import { useEffect, useState } from 'react';
 import {
-  getQuestions,
   getQuestionsBySurveyId,
   getSurveyAnswers,
   getSurveyRatings,
