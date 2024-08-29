@@ -18,7 +18,7 @@ export const Navbar = () => {
   const [isAdminPage, setIsAdminPage] = useState(false);
 
   useEffect(() => {
-    setIsAdminPage(pathname === '/admin');
+    setIsAdminPage(pathname.includes('/admin'));
   }, [pathname]);
   return (
     <div className='navbar bg-secondary max-w-[1100px] w-10/12 px-0'>
