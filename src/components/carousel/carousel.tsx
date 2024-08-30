@@ -106,26 +106,6 @@ export const Carousel = ({ questions }: CarouselProps) => {
     setAnswers(prevAnswers);
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const touchStartX = e.touches[0].clientX;
-    touchStartXRef.current = touchStartX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartXRef.current !== null) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const deltaX = touchEndX - touchStartXRef.current;
-
-      if (deltaX >= 50) {
-        handlePrev();
-      } else if (deltaX <= -50) {
-        handleNext();
-      }
-
-      touchStartXRef.current = null;
-    }
-  };
-
   const submitAnswers = async () => {
     try {
       setSubmitLoading(true);
@@ -165,8 +145,6 @@ export const Carousel = ({ questions }: CarouselProps) => {
       animate={{}}
       transition={{ ease: 'easeInOut', duration: 0.9 }}
       className='h-[80vh] w-full flex items-center justify-center relative bg-cover overflow-hidden'
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
     >
       <div className=' mt-2 flex items-center justify-center w-full overflow-hidden h-full'>
         <div
