@@ -14,7 +14,6 @@ import { calculateAverageRatingPerSurvey } from "@/lib/utils/calculate-average-r
 import { processAnswers } from "@/lib/utils/convert-question-data"
 import { Answer } from "@/lib/types/Answer"
 
-type AverageRatings = { [key: number]: number }
 export const DisplaySurveyResult = () => {
   const params = useParams()
   const [surveyRatings, setSurveyRatings] = useState<number[]>([])
@@ -40,38 +39,43 @@ export const DisplaySurveyResult = () => {
     }
   }
 
-  //filter survey answers based on question id and its rating
-  //[{ 1: [5, 9, 5] }, { 2: [5, 9, 5] }, { 3: [5, 9, 5] }]
-  //[{id: number[]}] -> [id: average rating]
+  const result = surveyAnswers.reduce(
+    (acc: { [key: number]: { sum: number; count: number } }, obj) => {
+      const questionId = obj.question_id
+      const rating = obj.rating
 
-  const result = surveyAnswers.reduce((acc, obj) => {
-    const questionId = obj.question_id
-    const rating = obj.rating
+      if (questionId !== null) {
+        if (acc[questionId]) {
+          acc[questionId].sum += rating
+          acc[questionId].count++
+        } else {
+          acc[questionId] = { sum: rating, count: 1 }
+        }
+      }
 
-    const existingQuestion = acc.find((item) => item[questionId!])
+      return acc
+    },
+    {}
+  )
 
-    if (existingQuestion) {
-      existingQuestion[questionId!].push(rating)
-    } else {
-      const newEntry = {}
-      newEntry[questionId] = [rating]
-      acc.push(newEntry)
-    }
-
-    return acc
-  }, [])
+  const averagesData = Object.keys(result).reduce(
+    (acc: { [key: string]: number }, key) => {
+      acc[key] = result[+key].sum / result[+key].count
+      return acc
+    },
+    {}
+  )
 
   useEffect(() => {
     handleData()
   }, [])
-
   return (
     <main className=" w-full flex flex-col justify-center items-center">
       <Gauge value={averageRatingForSurvey} />
       <QuestionsForAdvice
         questions={questions}
         graphData={questionData}
-        averageRatings={result}
+        averageRatings={averagesData}
       />
     </main>
   )
