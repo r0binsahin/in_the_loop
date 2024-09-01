@@ -58,7 +58,7 @@ erDiagram
 
 ![Image 1](./public/image1.png)
 
-### Description for Image 1
+### Survey start
 
 ![Image 2](./public/image2.png)
 
@@ -66,19 +66,19 @@ erDiagram
 
 ![Image 3](./public/image3.png)
 
-### Description for Image 3
+### Use the slider to set a rating
 
 ![Image 4](./public/image4.png)
 
-### Description for Image 4
+### After  submitting the user it redirected to the result page
 
 ![Image 5](./public/image5.png)
 
-### img5
+### Here the current average of the whole survey, the changes over time and average rating per quetion and changes over time per question are presented
 
 ![Image 6](./public/image6.png)
 
-### img6
+### average rating per quetion and changes over time per question
 
 ![Image 7](./public/image7.png)
 
