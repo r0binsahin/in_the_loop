@@ -2,7 +2,14 @@
 
 ## A survey application created for continuous feedback and instant result
 
-An app that answers the challenge of building and maintaining a positive office culture. Employers often struggle to get honest feedback from their employees, leading to disengagement, low morale and eventually more people quitting.
+An app that answers the challenge of building and maintaining a positive office culture. Employers often struggle to get honest feedback from their employees, leading to disengagement, low morale and eventually more people quitting. In the Loop transforms employee feedback into actionable insights.
+By collecting real-time data from surveys we generate dynamic graphs, gauges and also give suggestions for improvements. This allows for: quick assessment of the organizational health, helps with monitoring of important key factors, continuous improvements over time.For employees, it offers an engaging way to voice their opinions and see the improved changes.
+
+### The Team
+
+| [![Robin Sahin](https://github.com/r0binsahin.png?size=100)](https://github.com/r0binsahin) | [![Magdalena Karpinska](https://github.com/magdalena-karpinska.png?size=100)](https://github.com/magdalena-karpinska) | [![Jonathan Zeray](https://github.com/JonathanZeray.png?size=100)](https://github.com/JonathanZeray) | [![Kenny Dinh](https://github.com/iiiamken.png?size=100)](https://github.com/iiiamken) |
+|:---:|:---:|:---:|:---:|
+| **Robin Sahin**   | **Magdalena Karpinska** | **Jonathan Zeray** | **Kenny Dinh**  |
 
 ### TRY IT HERE
 
@@ -13,7 +20,7 @@ An app that answers the challenge of building and maintaining a positive office 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Drizzle](https://img.shields.io/badge/Drizzle-FF4136?style=for-the-badge&logo=dropbox&logoColor=white)
+![Drizzle](https://img.shields.io/badge/Drizzle-FF4136?style=for-the-badge&logo=drizzle&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Clerk](https://img.shields.io/badge/Clerk-0069ff?style=for-the-badge&logo=clerk&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
