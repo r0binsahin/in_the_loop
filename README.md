@@ -56,49 +56,78 @@ erDiagram
 
 ## Application flow
 
-![Image 1](./public/image1.png)
+<p align="center">
+  <img src="./public/image1.png" alt="Image 1" />
+  <br />
+  <strong>Application flow</strong>
+</p>
 
-### Survey start
+<p align="center">
+  <img src="./public/image2.png" alt="Image 2" />
+  <br />
+  <strong>Survey start</strong>
+</p>
 
-![Image 2](./public/image2.png)
+<p align="center">
+  <img src="./public/image3.png" alt="Image 3" />
+  <br />
+  <strong>The application is created fully responsive</strong>
+</p>
 
-### The application is created fully responsive
+<p align="center">
+  <img src="./public/image4.png" alt="Image 4" />
+  <br />
+  <strong>Use the slider to set a rating</strong>
+</p>
 
-![Image 3](./public/image3.png)
+<p align="center">
+  <img src="./public/image5.png" alt="Image 5" />
+  <br />
+  <strong>After submitting, the user is redirected to the result page</strong>
+</p>
 
-### Use the slider to set a rating
+<p align="center">
+  <img src="./public/image6.png" alt="Image 6" />
+  <br />
+  <strong>Here the current average of the whole survey, the changes over time, and average rating per question and changes over time per question are presented</strong>
+</p>
 
-![Image 4](./public/image4.png)
+<p align="center">
+  <img src="./public/image7.png" alt="Image 7" />
+  <br />
+  <strong>Average rating per question and changes over time per question</strong>
+</p>
 
-### After  submitting the user it redirected to the result page
+<p align="center">
+  <img src="./public/image8.png" alt="Image 8" />
+  <br />
+  <strong>As admin you can see all surveys, add new surveys, and handle them</strong>
+</p>
 
-![Image 5](./public/image5.png)
+<p align="center">
+  <img src="./public/image9.png" alt="Image 9" />
+  <br />
+  <strong>You can edit a survey by adding or deleting a question</strong>
+</p>
 
-### Here the current average of the whole survey, the changes over time and average rating per quetion and changes over time per question are presented
+<p align="center">
+  <img src="./public/image10.png" alt="Image 10" />
+  <br />
+  <strong>As admin you can also see results for each survey. The difference from the user result is this get advice button. If the average rating of a question is below 6 then this button appears here to take you to the advice page</strong>
+</p>
 
-![Image 6](./public/image6.png)
+<p align="center">
+  <img src="./public/image11.png" alt="Image 11" />
+  <br />
+  <strong>Let's see how we can improve communication in the team</strong>
+</p>
 
-### average rating per quetion and changes over time per question
+<p align="center">
+  <img src="./public/image12.png" alt="Image 12" />
+  <br />
+  <strong>This OpenAI support is based on scientific research and proven experience, so the user can be sure that the methods suggested are reliable. For each suggestion, there is a reasoning, action to apply, and resources</strong>
+</p>
 
-![Image 7](./public/image7.png)
-
-### As admin you can see all surveys, add new survey and handle themddd
-
-![Image 8](./public/image8.png)
-
-### You can edit a survey by adding or deleting a question
-
-![Image 9](./public/image9.png)
-
-### As admin you can also see results for each survey. The difference from the user result is this get advice button. If the average rating of a question is below 6 then this button appears here to take you to advice page
-
-![Image 10](./public/image10.png)
-
-### Let see how we can improve the communication in the team
-
-![Image 11](./public/image11.png)
-
-### This openAI support is based on scientific researches and proven experience, so the user can be sure that the method suggested are reliable. For each suggestion there is a reasoning, action to apply and the resources
 
 ## Getting Started
 
