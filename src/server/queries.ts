@@ -1,9 +1,11 @@
-import { Answer } from '@/lib/types/Answer';
-import { db } from './db';
-import { answers, questions, surveys } from './db/schema';
-import { eq } from 'drizzle-orm';
-import { Question } from '@/lib/types/Question';
-import { Survey } from '@/lib/types/Survey';
+import { eq } from "drizzle-orm";
+
+import { Answer } from "@/lib/types/Answer";
+import { Question } from "@/lib/types/Question";
+
+import { db } from "./db";
+import { answers, questions, surveys } from "./db/schema";
+
 export const queryGetQuestions = async () => {
   try {
     const questionArray = await db.select().from(questions);
@@ -142,7 +144,7 @@ export const queryDeleteQuestion = async (id: number) => {
       await tx.delete(questions).where(eq(questions.id, id));
     });
   } catch (error) {
-    console.error('Error deleting question and answers:', error);
+    console.error("Error deleting question and answers:", error);
     throw error;
   }
 };
