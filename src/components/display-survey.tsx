@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Question } from '@/lib/types/Question';
-import { Carousel } from '../components';
-import { useEffect, useState } from 'react';
-import { getQuestionsBySurveyId } from '@/lib/actions';
-import { useParams } from 'next/navigation';
+import { Question } from "@/lib/types/Question";
+import { Carousel } from "../components";
+import { useEffect, useState } from "react";
+import { getQuestionsBySurveyId } from "@/lib/actions";
+import { useParams } from "next/navigation";
 
 export const DisplaySurvey = () => {
   const params = useParams();
@@ -12,7 +12,7 @@ export const DisplaySurvey = () => {
   const [questions, setQuestions] = useState<Question[] | []>([]);
 
   useEffect(() => {
-    const fetchQustions = async () => {
+    const fetchQuestions = async () => {
       try {
         const res = (await getQuestionsBySurveyId(+params.id)) || [];
         if (!res) return [];
@@ -23,7 +23,7 @@ export const DisplaySurvey = () => {
       }
     };
 
-    fetchQustions();
+    fetchQuestions();
   }, [params.id]);
   return <Carousel questions={questions!} />;
 };
